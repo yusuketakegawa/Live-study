@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root "rooms#index"
+  root "studies#index"
 end
