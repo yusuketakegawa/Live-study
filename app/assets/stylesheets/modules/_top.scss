@@ -2,6 +2,8 @@
   box-sizing: border-box;
   font-family: 'Raleway', 'Noto Sans JP', sans-serif;
 }
+
+$mr-content:30px;
 .brand-logo{
   font-weight: bold;
 }
@@ -11,4 +13,13 @@
   margin: 1rem auto;
   color: rgb(66, 66, 66);
   padding-left: 17rem;
+}
+.top__content{
+  margin-top: $mr-content;
+  max-width: 520px;
+}
+.main__content{
+  height: 500px;
+  width: 100%;
+  margin-top: $mr-content;
 }
