@@ -3,8 +3,11 @@
   font-family: 'Raleway', 'Noto Sans JP', sans-serif;
 }
 
-$mr-content:30px;
-.brand-logo{
+$mr-content:50px;
+.brand-logo {
+  font-weight: bold;
+}
+.blockquote {
   font-weight: bold;
 }
 .close-icon {
@@ -21,5 +24,9 @@ $mr-content:30px;
 .main__content{
   height: 500px;
   width: 100%;
-  margin-top: $mr-content;
+  margin-top: 70px;
+}
+.study__logo {
+  height: 60px;
+  width: 120px;
 }
