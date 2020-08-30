@@ -1,16 +1,9 @@
-$(document).ready(function () {
+
+$(document).on('turbolinks:load',function () {
   $('.sidenav').sidenav({
-    edge: 'right',
+    edge: 'right'
   });
+  $('.tap-target').tapTarget();
+  $('select').formSelect();
 })
 
-
-$(document).ready(function(){
-  $('.tap-target').tapTarget();
-});
-     
-
-$(document).ready(function(){
-  $('select').formSelect();
-});
-      
