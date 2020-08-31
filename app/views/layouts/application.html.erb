@@ -8,14 +8,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Raleway:wght@400;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   </head>
   <body>
-    <div class=" navbar-fixed">
+    <div class= "navbar-fixed shadow-text">
       <nav class="nav-wraper  deep-purple accent-2">
-        <a href="#" class="brand-logo left">
+        <a href="/" class="brand-logo left">
           <%= image_tag "Live Study-logo-white.png", class: "study__logo"%>
         </a>
         <a href="#" class="sidenav-trigger right " data-target="mobile-links">
@@ -31,10 +29,11 @@
     </div>
     <ul class="sidenav" id="mobile-links">
       <div class="menu">
-        <li><a href="#">Contents1</a></li>
-        <li><a href="#">Contents2</a></li>
-        <li><a href="#">Contents3</a></li>
-        <li><a href="#">Contents4</a></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "編集", edit_user_path(current_user) %></li>
+      <% else %>  
+      <% end %>
       </div>
     </ul>
     <%= yield %>
