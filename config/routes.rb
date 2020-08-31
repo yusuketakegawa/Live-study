@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root "studies#index"
   resources :studies, only: [:show]
   resources :users, only: [:show, :edit, :update]
+  resources :rooms, only: [:show]
 end
