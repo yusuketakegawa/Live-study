@@ -15,3 +15,8 @@
   $(function () {
     $(".Notification").fadeOut(5000);
   });
+
+  //タイムピッカー
+   $(document).ready(function () {
+     $(".timepicker").timepicker();
+   });

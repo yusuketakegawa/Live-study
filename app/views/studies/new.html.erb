@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <%= form_with(model: @study, local: true) do |f| %>
+      <h3>部屋を作る</h3>
+      <div class="input-field col s12 m6">
+       <%= f.select :tool, [['zoom', 1, ], ['skype', 2], ['whereby', 3]], { include_blank: true, selected: 1 }, { id: "user_id", class: "icons" } %>
+        <label>使用ツール</label>
+      </div>
+      <div class="input-field col s12 m6">
+       <%= f.select :category, [['がっつり勉強', 1, ], ['緩く勉強', 2], ['少し休憩', 3]], { include_blank: true, selected: 1 }, { id: "user_id", class: "icons" } %>
+        <label>部屋の種類</label>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.time_field :end_at, class:"timepicker" %>
+        <%= f.label :終了時刻%>
+      </div>
+      <div class="input-field col s6">
+        <%= f.text_field :name,class: "materialize-textarea" %>
+        <%= f.label :部屋名%>
+      </div>
+      <div class="col s6">
+        <div class="prev-contents">
+         
+          <%= f.file_field :image, type: 'file', id:"img-file" %>
+        </div>
+      </div>  
+        <div class="input-field col s12">
+          <%= f.text_area :introduce,class: "materialize-textarea" %>
+          <%= f.label :説明%>
+        </div>
+      <div class="input-field col s12">
+        <%= f.submit "作成", class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
