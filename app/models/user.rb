@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   mount_uploader :image, ImageUploader
 
-  has_many :study_users
-  has_many :studies, through: :study_users
+  # has_many :study_users
+  has_many :created_studies, class_name: "Study", foreign_key: "owner_id"
 end

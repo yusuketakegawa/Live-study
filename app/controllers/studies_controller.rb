@@ -6,14 +6,14 @@ class StudiesController < ApplicationController
   end
 
   def new
-    @study = Study.new
-    @study.users << current_user
+    @study = current_user.created_studies.build
   end
   
   def create
-    @study = Study.new(study_params)
+    @study = current_user.created_studies.build(study_params)
+
     if @study.save
-      redirect_to root_path, notice: '部屋を作成しました'
+      redirect_to root_path, notice: "部屋を作成しました"
     else
       render :new
     end
@@ -21,6 +21,6 @@ class StudiesController < ApplicationController
 
     private
   def study_params
-    params.require(:study).permit(:name, :introduce, :image, :tool, :category, :end_at, user_ids: [])
+    params.require(:study).permit(:name, :introduce, :image, :tool, :category, :end_at)
   end
 end

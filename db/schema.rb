@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_015459) do
+ActiveRecord::Schema.define(version: 2020_08_31_124950) do
 
   create_table "studies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "owner_id"
     t.string "name"
     t.text "introduce"
     t.string "image"
@@ -21,15 +22,6 @@ ActiveRecord::Schema.define(version: 2020_09_01_015459) do
     t.time "end_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "study_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "study_id"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["study_id"], name: "index_study_users_on_study_id"
-    t.index ["user_id"], name: "index_study_users_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -47,6 +39,4 @@ ActiveRecord::Schema.define(version: 2020_09_01_015459) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "study_users", "studies"
-  add_foreign_key "study_users", "users"
 end
