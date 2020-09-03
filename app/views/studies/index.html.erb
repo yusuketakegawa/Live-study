@@ -1,12 +1,11 @@
-
 <div class ="container">
   <div class ="row ">
     <div class ="top__content col s12  ">
-    <h6 class ="blockquote ">
-      <blockquote>
-        勉強部屋を検索しよう
-      </blockquote>
-    </h6>
+      <h6 class ="blockquote ">
+        <blockquote>
+          勉強部屋を検索しよう
+        </blockquote>
+      </h6>
       <div class="input-field col s12 ">
         <select>
           <option value="" disabled selected>Choose your option</option>
@@ -34,73 +33,46 @@
         </select>
         <label>参加人数</label>
       </div>
-    <a class="waves-effect waves-light btn"><i class="material-icons left">search</i>検索</a>
+      <a class="waves-effect waves-light btn "><i class="material-icons left">search</i>検索</a>
+    </div>
+  </div>
+  <div class ="row">
+    <div class ="main__content">
+      <h6 class ="blockquote ">
+        <blockquote>
+          現在開催中の部屋一覧
+        </blockquote>
+      </h6>
+      <% @studies.each do |s|%>
+        <div class ="col s12 m6 l4">
+          <div class="card col">
+            <div class="card-image ">
+              <%= image_tag s.image.url, class: 'index__image'%>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><%= s.name %><i class="material-icons right">more_vert</i></span>
+              <div class="content__row">
+                <div class="content__row__right">
+                  <%= link_to study_path(s.id), class: "btn " do%>
+                    詳細
+                  <% end %>
+                </div>
+                <div class ="content__row__left">
+                  <%= image_tag s.tool.image, size:50%>
+                </div>
+              </div>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><%= s.name %><i class="material-icons right">close</i></span>
+              <p><%= s.introduce %></p>
+              <p><%= "~#{s.end_at.strftime('%H:%M')}終了" %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class ="row">
-  <div class ="main__content"> 
-  <h6 class ="blockquote ">
-    <blockquote>
-      現在開催中の部屋一覧
-    </blockquote>
-  </h6>  
-  <div class ="col s12 m6 l4">
-    <div class="card col">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sh_manami_yamazaki/20190416/20190416083315.jpg">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-  </div>  
-  <div class ="col s12 m6 l4">
-    <div class="card col">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sh_manami_yamazaki/20190416/20190416083315.jpg">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-  </div>  
-  <div class ="col s12 m6 l4">
-    <div class="card col">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sh_manami_yamazaki/20190416/20190416083315.jpg">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-  </div>  
-  
-  </div>
-</div>
-</div>
-
-
-
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large ">
-    <i class="large material-icons">add</i>
-  </a>
-
 </div>
 <footer class="page-footer deep-purple accent-2">
   <div class="container">
@@ -122,9 +94,8 @@
   </div>
   <div class="footer-copyright">
     <div class="container">
-    © 2020 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      © 2020 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
     </div>
   </div>
 </footer>
-       

@@ -3,13 +3,14 @@
     <%= form_with(model: @study, local: true) do |f| %>
       <h3>部屋を作る</h3>
       <div class="input-field col s12 m6">
-       <%= f.select :tool, [['zoom', 1, ], ['skype', 2], ['whereby', 3]], { include_blank: true, selected: 1 }, { id: "user_id", class: "icons" } %>
+       <%= f.collection_select :tool_id, Tool.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
         <label>使用ツール</label>
       </div>
       <div class="input-field col s12 m6">
-       <%= f.select :category, [['がっつり勉強', 1, ], ['緩く勉強', 2], ['少し休憩', 3]], { include_blank: true, selected: 1 }, { id: "user_id", class: "icons" } %>
-        <label>部屋の種類</label>
+       <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
+        <label>使用ツール</label>
       </div>
+   
 
       <div class="input-field col s12">
         <%= f.time_field :end_at, class:"timepicker" %>

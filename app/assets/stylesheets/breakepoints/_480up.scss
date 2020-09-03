@@ -1,7 +1,7 @@
 //studies-index
 * {
   box-sizing: border-box;
-  font-family: 'Raleway', 'Noto Sans JP', sans-serif;
+  font-family: inherit;
 }
 
 $mr-content:50px;
@@ -30,6 +30,19 @@ $mr-content:50px;
 .study__logo {
   height: 60px;
   width: 120px;
+}
+
+.content__row {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    position: relative;
+    bottom: 7px;
+  }
+}
+
+.index__image {
+  height: 200px;
 }
 
 

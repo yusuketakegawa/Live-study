@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_124950) do
     t.string "name"
     t.text "introduce"
     t.string "image"
-    t.string "tool", null: false
-    t.integer "category", null: false
+    t.integer "tool_id", null: false
+    t.integer "category_id", null: false
     t.time "end_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
