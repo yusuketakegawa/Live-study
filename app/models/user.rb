@@ -4,4 +4,5 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   has_many :created_studies, class_name: "Study", foreign_key: "owner_id"
+  has_many :joins
 end
