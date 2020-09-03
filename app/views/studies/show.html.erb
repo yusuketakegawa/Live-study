@@ -12,8 +12,6 @@
           <%= @study.owner.nickname%>
           <% if @study.created_by?(current_user)%>
             <%= link_to "編集", edit_study_path(@study), class:"btn"%>
-          <% end %>
-          <% if @study.created_by?(current_user)%>
             <%= link_to "削除", study_path(@study), class:"btn", method: :delete, data: { confirm: "本当に削除しますか?"}%>
           <% end %>
         </div>
@@ -40,6 +38,11 @@
         <div class="card-action">
           <a class="waves-effect waves-light btn"><i class="material-icons left">input</i>参加する</a>
         </div>
+        <% if user_signed_in? %>
+          <%= form_with(model: @study.joins.build, url: study_joins_path(@study), local: true) do |f|%>
+            <%= f.submit "参加", class: "btn"%>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
