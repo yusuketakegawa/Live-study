@@ -1,8 +1,10 @@
 class StudiesController < ApplicationController
   def index
+    @studies = Study.all
   end
 
   def show
+    @study = Study.find(params[:id])
   end
 
   def new
@@ -21,6 +23,6 @@ class StudiesController < ApplicationController
 
     private
   def study_params
-    params.require(:study).permit(:name, :introduce, :image, :tool, :category, :end_at)
+    params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at)
   end
 end

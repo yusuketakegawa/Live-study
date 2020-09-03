@@ -5,8 +5,8 @@ class CreateStudies < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :introduce
       t.string :image
-      t.string :tool, null: false
-      t.integer :category, null: false
+      t.integer :tool_id, null: false
+      t.integer :category_id, null: false
       t.time :end_at, null: false
       t.timestamps
     end
