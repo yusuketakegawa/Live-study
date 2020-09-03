@@ -10,7 +10,12 @@
           <p>ホスト</p>
           <%= image_tag @study.owner.image.url, width: 50, height: 50%>
           <%= @study.owner.nickname%>
-          <% if @study.%>
+          <% if @study.created_by?(current_user)%>
+            <%= link_to "編集", edit_study_path(@study), class:"btn"%>
+          <% end %>
+          <% if @study.created_by?(current_user)%>
+            <%= link_to "削除", study_path(@study), class:"btn", method: :delete, data: { confirm: "本当に削除しますか?"}%>
+          <% end %>
         </div>
         <ul class="collection">
           <li class="collection-item avatar">
