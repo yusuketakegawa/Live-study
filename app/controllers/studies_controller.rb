@@ -5,6 +5,8 @@ class StudiesController < ApplicationController
 
   def show
     @study = Study.find(params[:id])
+    @join = current_user && current_user.joins.find_by(study: @study)
+    @joins = @study.joins.includes(:user).order(:created_at)
   end
 
   def new
