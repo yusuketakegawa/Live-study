@@ -20,3 +20,12 @@
    $(document).ready(function () {
      $(".timepicker").timepicker();
    });
+
+   //ツールチップ
+  $(document).ready(function () {
+    $(".tooltipped").tooltip({
+      outDuration: 0,
+      enterDelay: 0,
+      transitionMovement: 10,
+    });
+  });

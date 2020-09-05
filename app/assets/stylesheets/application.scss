@@ -1,20 +1,9 @@
 @import "modules/reset";
-@import "modules/top";
-@import "modules/show";
+@import "modules/study";
+@import "modules/user";
+@import "modules/message";
 @import "materialize";
-@media (min-width: 480px) {
-  @import "breakepoints/480up";
-}
-
-@media (min-width: 600px) {
-  @import "breakepoints/600up";
-}
-
 @media (min-width: 960px) {
   @import "breakepoints/960up";
-}
-
-@media (min-width: 1280px) {
-  @import "breakepoints/1280up";
 }
 
