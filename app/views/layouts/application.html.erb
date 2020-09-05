@@ -18,21 +18,77 @@
         <a href="#" class="sidenav-trigger right " data-target="mobile-links">
           <i class="material-icons">menu</i>
         </a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#" class="waves-effect">Contents1</a></li>
-          <li><a href="#" class="waves-effect">Contents2</a></li>
-          <li><a href="#" class="waves-effect">Contents3</a></li>
-          <li><a href="#" class="waves-effect">Contents4</a></li>
+        <ul class="right hide-on-large-only">
+          <li>
+            <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
+              <i class="material-icons">notifications</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
+              <i class="material-icons">email</i>
+            <% end %>
+          </li>
+        </ul>
+        <% if user_signed_in? %>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
+                <i class="material-icons">notifications</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
+                <i class="material-icons">email</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"マイページ"} do %>
+                <i class="material-icons">person</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: "tooltipped", data: {position: "bottom", tooltip:"ログアウト"} do %>
+                <i class="material-icons">exit_to_app</i>
+              <% end %>
+            </li>
+          <% else %>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+            <li><%= link_to "新規登録", new_user_registration_path  %></li>
+          <% end %>
         </ul>
       </nav>
     </div>
     <ul class="sidenav" id="mobile-links">
       <div class="menu">
         <% if user_signed_in? %>
-          <li><%= link_to "マイページ", user_path(current_user) %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to "編集", edit_user_path(current_user) %></li>
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <i class="material-icons">person</i>
+              <p>マイページ</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete  do %>
+              <i class="material-icons">exit_to_app</i>
+              <p>ログアウト</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to  edit_user_path(current_user) do %>
+              <i class="material-icons">edit</i>
+              <p>編集</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to  new_study_path(current_user) do %>
+              <i class="material-icons">add</i>
+              <p>新規作成</p>
+            <% end %>
+          </li>
         <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path  %></li>
         <% end %>
       </div>
     </ul>

@@ -1,0 +1,38 @@
+//users-show
+.user__show {
+  display: flex;
+  justify-content: center;
+
+  &__content {
+  max-width: 700px;
+  margin-top: 70px;
+
+    &__card {
+      width: 500px;
+    }
+    &__image {
+      width: 120px;
+    }
+    &__int {
+      margin-top: 10px !important;
+    }
+ }
+  .content__top {
+    display: flex;
+
+    &__name {
+      font-weight: bold;
+    }
+    &__btn {
+      margin-left: 100px;
+      display: flex;
+    }
+    &__message {
+      margin-left: 10px;
+    }
+  }
+}
+
+
+
+

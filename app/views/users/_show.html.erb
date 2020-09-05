@@ -1,14 +1,14 @@
-<div class ="container show">  
+<div class ="container user__show">  
   <div class ="row">
-    <div class="show__content col s12 m12 l12">
-      <div class="card horizontal profile__card">
-        <div class="card-image show__content__image">
+    <div class="user__show__content col s12 m12 l12">
+      <div class="card horizontal user__show__content__card">
+        <div class="card-image user__show__content__image">
           <%= image_tag user.image.url, class: "profile__pic"%>
         </div>
         <div class="card-stacked">
           <div class="card-content">
             <div class="content__top">
-              <h6 class ="profile__name">
+              <h6 class ="content__top__name">
                 <%= user.nickname%>
               </h6>
               <div class ="content__top__btn">
@@ -16,7 +16,7 @@
                 <a class="waves-effect waves-light btn content__top__message"><i class="material-icons center">email</i></a>
               </div>
             </div>  
-            <p class="card__content__int">
+            <p class="user__show__content__int">
               <%= user.introduce%>
             </p>
           </div>
