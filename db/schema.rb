@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_075228) do
     t.string "name"
     t.text "introduce"
     t.string "image"
+    t.string "url", null: false
     t.integer "tool_id", null: false
     t.integer "category_id", null: false
     t.time "end_at", null: false
@@ -49,4 +50,5 @@ ActiveRecord::Schema.define(version: 2020_09_03_075228) do
   end
 
   add_foreign_key "joins", "studies"
+  add_foreign_key "joins", "users"
 end

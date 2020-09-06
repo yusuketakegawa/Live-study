@@ -14,11 +14,12 @@ class Study < ApplicationRecord
   belongs_to_active_hash :tool
 
   belongs_to :owner, class_name: "User"
-  has_many :joins
+  has_many :joins, dependent: :destroy
 
   def created_by?(user)
     return false unless user
     owner_id == user.id
   end
   
+
 end
