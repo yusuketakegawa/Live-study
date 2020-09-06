@@ -1,4 +1,5 @@
 
+//base-style
 * {
   box-sizing: border-box;
   font-family: inherit;
@@ -10,12 +11,11 @@
 }
 
 //header
-
 .hide-on-med-and-down {
   margin-right: 20px;
 }
-//studies-index
 
+//studies-index
 .study__logo {
   height: 60px;
   width: 120px;
@@ -74,9 +74,76 @@
 .study__show {
   display: flex;
   justify-content: center;
+  &__image {
+    padding: 20px;
+    display: flex;
+    &__url {
+      width: 50% !important;
+      height: 300px;
+    }
+    &__left {
+      width: 50%;
+      padding: 0 20px;
+      .show__title {
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .show__introduce {
+        font-size: 12px;
+        margin-top: 5px;
+      }
+      .show__host {
+        margin-top: 20px;
+        &__image {
+          height: 30px;
+          width: 30px !important;
+        }
+        &__container {
+          display: flex;
+          height: 30px;
+          font-size: 10px;
+          .host__name {
+            display: flex;
+            align-items: center;
+          }
+        }
+        &__name {
+          display: flex;
+          align-items: center;
+          color: white;
+          padding: 5px;
+          border-radius: 2px;
+        }
+        &__btn {
+          display: block;
+          margin: 8px 0;
+        }
+      }
+    }
+  }
   &__content {
-  max-width: 700px;
-  margin-top: 70px;
+    max-width: 700px;
+    margin-top: 70px;
+  }
+  .join__user {
+    display: flex;
+    &__name {
+      line-height: 30px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+  }
+  .join__room {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 50px;
+    }
   }
 }
 

@@ -2,47 +2,63 @@
   <div class="row">
     <div class="study__show__content col s12 m12 l12">
       <div class="card">
-        <div class="card-image">
-          <%= image_tag @study.image.url%>
-        </div>
-        <div class="card-content">
-          <span class="card-title"><%=@study.name %></span>
-          <p>ホスト</p>
-          <%= image_tag @study.owner.image.url, width: 50, height: 50%>
-          <%= @study.owner.nickname%>
-          <% if @study.created_by?(current_user)%>
-            <%= link_to "編集", edit_study_path(@study), class:"btn"%>
-            <%= link_to "削除", study_path(@study), class:"btn", method: :delete, data: { confirm: "本当に削除しますか?"}%>
-          <% end %>
+        <div class="card-image study__show__image">
+          <%= image_tag @study.image.url, class: "study__show__image__url"%>
+          <div class="study__show__image__left">
+            <div class="show__title"><%=@study.name %></div>
+            <div class=" show__introduce"><%=@study.introduce %></div>
+            <div class="show__host">
+              <div class="show__host__container">
+                <p class ="show__host__name teal lighten-1">  <i class="material-icons">account_circle</i>ホスト</p>
+                <%= image_tag @study.owner.image.url, class: "show__host__image"%>
+                <div class="name"><%= @study.owner.nickname%></div>
+              </div>
+              <% if @study.created_by?(current_user)%>
+                <%= link_to "編集", edit_study_path(@study), class:"btn show__host__btn"%>
+                <%= link_to "削除", study_path(@study), class:"btn show__host__btn", method: :delete, data: { confirm: "本当に削除しますか?"}%>
+              <% end %>
+            </div>
+          </div>
         </div>
         <ul class="collection">
           <li class="collection-item avatar">
-            <i class="material-icons circle">link</i>
+            <i class="material-icons circle teal lighten-1">link</i>
             <span class="title">リンク</span>
             <p>First Line 
             </p>
           </li>
           <li class="collection-item avatar">
-            <i class="material-icons circle green">person</i>
-            <span class="title">参加メンバー</span>
+            <i class="material-icons circle teal lighten-1">people</i>
+            <div class="title">参加メンバー</div>
             <% @joins.each do |join|%>
-              <%= join.user.nickname%>
+              <div class="join__user">
+                <%= image_tag join.user.image.url, width: 30, height: 30%>
+                <div class="join__user__name"><%= join.user.nickname%></div>
+              </div>
             <% end %>
           </li>
           <li class="collection-item avatar">
-            <i class="material-icons circle red">alarm</i>
+            <i class="material-icons circle teal lighten-1">alarm</i>
             <span class="title">終了予定</span>
             <p>  <%= "~#{@study.end_at.strftime('%H:%M')}" %>
             </p>
           </li>
         </ul>
-        <% if @join %>
-          <%= link_to "退出", study_join_path(@study, @join) , method: :delete, class: "btn"%>
-        <% elsif user_signed_in?%>
-          <%= form_with(model: @study.joins.build, url: study_joins_path(@study), local: true) do |f|%>
-            <%= button_tag '<i class="material-icons">input</i>参加'.html_safe, :type => "submit", :class =>"btn btn-default btn-s-md" %>
+        <% if @study.created_by?(current_user)%>
+        <% else %>
+          <div class="join__room">
+            <% if @join %>
+              <%= link_to "退出", study_join_path(@study, @join) , method: :delete, class: "btn join__room__btn"%>
+            <% elsif user_signed_in?%>
+              <% if @join %>
+              <% else %>
+                <%= form_with(model: @study.joins.build, url: study_joins_path(@study), local: true) do |f|%>
+                  <%= button_tag '<i class="material-icons">input</i>参加'.html_safe, :type => "submit", :class =>"btn btn-default btn-s-md join__room__btn" %>
+                <% end %>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>

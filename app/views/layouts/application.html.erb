@@ -18,6 +18,7 @@
         <a href="#" class="sidenav-trigger right " data-target="mobile-links">
           <i class="material-icons">menu</i>
         </a>
+      <% if user_signed_in? %>
         <ul class="right hide-on-large-only">
           <li>
             <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
@@ -30,6 +31,8 @@
             <% end %>
           </li>
         </ul>
+      <% else %>
+      <% end %>  
         <% if user_signed_in? %>
           <ul class="right hide-on-med-and-down">
             <li>
@@ -52,11 +55,13 @@
                 <i class="material-icons">exit_to_app</i>
               <% end %>
             </li>
+        </ul>
           <% else %>
+          <ul class="right hide-on-med-and-down">
             <li><%= link_to "ログイン", new_user_session_path %></li>
             <li><%= link_to "新規登録", new_user_registration_path  %></li>
+          </ul>  
           <% end %>
-        </ul>
       </nav>
     </div>
     <ul class="sidenav" id="mobile-links">

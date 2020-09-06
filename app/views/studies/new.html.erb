@@ -8,13 +8,17 @@
       </div>
       <div class="input-field col s12 m6">
        <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
-        <label>使用ツール</label>
+        <label>タイプ</label>
       </div>
    
 
       <div class="input-field col s12">
         <%= f.time_field :end_at, class:"timepicker" %>
         <%= f.label :終了時刻%>
+      </div>
+      <div class="input-field col s12">
+        <%= f.text_field :url, class:"materialize-textarea" %>
+        <%= f.label :url%>
       </div>
       <div class="input-field col s6">
         <%= f.text_field :name,class: "materialize-textarea" %>

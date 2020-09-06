@@ -9,6 +9,7 @@ class StudiesController < ApplicationController
     @joins = @study.joins.includes(:user).order(:created_at)
   end
 
+
   def new
     @study = current_user.created_studies.build
   end
@@ -41,6 +42,6 @@ class StudiesController < ApplicationController
   end
     private
   def study_params
-    params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at)
+    params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at, :url)
   end
 end
