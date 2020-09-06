@@ -37,50 +37,47 @@
       過去に開催した部屋一覧  
     </blockquote>
     </h6> 
-      <div class ="col s12 m6 l3">
-    <div class="card col">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sh_manami_yamazaki/20190416/20190416083315.jpg">
+   
+ <% @study.each do |s|%>
+        <div class ="col s6 m4 l3">
+          <div class="card col index__main__block ">
+            <div class="card-image ">
+              <%= image_tag s.image.url, class: 'index__main__image'%>
+            </div>
+            <div class="card-content index__main__card">
+              <span class="card-title activator grey-text text-darken-4 index__main__title"><%= s.name %><i class="material-icons right">more_vert</i></span>
+              <div class="index__main__content">
+                <div class="index__main__content__right">
+                  <%= link_to study_path(s.id), class: "btn " do%>
+                    詳細
+                  <% end %>
+                </div>
+                <div class ="index__main__content__left">
+                  <%= image_tag s.tool.image, size:50%>
+                </div>
+              </div>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4 reveal__title"><%= s.name %><i class="material-icons right">close</i></span>
+              <ul class="collection ">
+                <li class="collection-item">  <%= link_to user_path(s.owner.id), class: "reveal__path" do %>
+                    <p><%= "ホスト: #{s.owner.nickname}" %></p>
+                    <%= image_tag s.owner.image.url, class: "reveal__image",  width: 30, height: 30%>
+                                  <% end %> </li>
+                <li class="collection-item">
+                  <p><%= "ツール: #{s.tool.name}" %></p>
+                </li>
+                <li class="collection-item">
+                  <p><%= "タイプ: #{s.category.name}" %></p>
+                </li>
+                <li class="collection-item">
+                  <p><%= "終了予定: #{s.end_at.strftime('%H:%M')}" %></p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-  </div>  
-      <div class ="col s12 m6 l3">
-    <div class="card col">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sh_manami_yamazaki/20190416/20190416083315.jpg">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-  </div>  
-      <div class ="col s12 m6 l3">
-    <div class="card col">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sh_manami_yamazaki/20190416/20190416083315.jpg">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-  </div>  
+      <% end %>
+ 
   </div>
 </div>    

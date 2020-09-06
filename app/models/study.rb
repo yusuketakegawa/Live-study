@@ -1,6 +1,5 @@
 class Study < ApplicationRecord
-  # has_many :study_users
-  # has_many :users, through: :study_users
+  acts_as_paranoid
   mount_uploader :image, ImageUploader
   validates :name, length: {maximum: 50}, presence: true
   validates :introduce, length: {maximum: 300}, presence: true
@@ -12,7 +11,6 @@ class Study < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :tool
-
   belongs_to :owner, class_name: "User"
   has_many :joins, dependent: :destroy
 
