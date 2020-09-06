@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
      @user=User.find(params[:id])
+     @study = @user.created_studies.only_deleted
   end
 
   def edit

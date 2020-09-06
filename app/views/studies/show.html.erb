@@ -16,6 +16,7 @@
               <% if @study.created_by?(current_user)%>
                 <%= link_to "編集", edit_study_path(@study), class:"btn show__host__btn"%>
                 <%= link_to "削除", study_path(@study), class:"btn show__host__btn", method: :delete, data: { confirm: "本当に削除しますか?"}%>
+                <%= link_to "終了", finish_study_path(@study), class:"btn show__host__btn", method: :delete, data: { confirm: "本当に削除しますか?"}%>
               <% end %>
             </div>
           </div>
