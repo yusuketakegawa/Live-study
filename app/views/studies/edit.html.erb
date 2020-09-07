@@ -1,20 +1,24 @@
 <div class="container">
   <div class="row">
     <%= form_with(model: @study, local: true) do |f| %>
-      <h3>更新する</h3>
+      <h3>部屋を更新する</h3>
       <div class="input-field col s12 m6">
        <%= f.collection_select :tool_id, Tool.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
         <label>使用ツール</label>
       </div>
       <div class="input-field col s12 m6">
        <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
-        <label>使用ツール</label>
+        <label>タイプ</label>
       </div>
    
 
       <div class="input-field col s12">
         <%= f.time_field :end_at, class:"timepicker" %>
         <%= f.label :終了時刻%>
+      </div>
+      <div class="input-field col s12">
+        <%= f.text_field :url, class:"materialize-textarea" %>
+        <%= f.label :url%>
       </div>
       <div class="input-field col s6">
         <%= f.text_field :name,class: "materialize-textarea" %>
@@ -31,8 +35,9 @@
           <%= f.label :説明%>
         </div>
       <div class="input-field col s12">
-        <%= f.submit "更新", class: "btn" %>
+        <%= f.submit "作成", class: "btn" %>
         </div>
       <% end %>
     </div>
   </div>
+

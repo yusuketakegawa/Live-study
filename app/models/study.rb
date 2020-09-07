@@ -14,6 +14,8 @@ class Study < ApplicationRecord
   belongs_to :owner, class_name: "User"
   has_many :joins, dependent: :destroy
 
+  has_many :comments
+
   def created_by?(user)
     return false unless user
     owner_id == user.id

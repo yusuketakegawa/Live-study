@@ -134,6 +134,7 @@
     }
   }
   .join__room {
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     height: 70px;
@@ -144,6 +145,9 @@
       width: 200px;
       height: 50px;
     }
+  }
+  .comments {
+    margin-top: 20px;
   }
 }
 

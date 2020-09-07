@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       delete 'finish'
     end
     resources :joins
+    resources :comments, only: :create
   end
+  
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
