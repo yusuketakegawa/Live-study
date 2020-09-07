@@ -7,6 +7,8 @@ class StudiesController < ApplicationController
     @study = Study.find(params[:id])
     @join = current_user && current_user.joins.find_by(study: @study)
     @joins = @study.joins.includes(:user).order(:created_at)
+    @comment = Comment.new
+    @comments = @study.comments.includes(:user)
   end
 
 
@@ -30,8 +32,8 @@ class StudiesController < ApplicationController
 
   def update
     @study = current_user.created_studies.find(params[:id])
-    if @study.update(study_params)
-      redirect_to @study, notice: '部屋の情報を更新しました'
+    if @study.update!(study_params)
+      redirect_to @study, notice: "更新しました"
     end
   end
 
