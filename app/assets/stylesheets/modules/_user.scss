@@ -26,6 +26,9 @@
     }
     &__btn {
       display: flex;
+      &__follow {
+        font-size: 10px;
+      }
     }
     &__message {
       margin-left: 10px;
@@ -33,6 +36,16 @@
   }
 }
 
-
+//follow
+.follow {
+  margin-top: 50px;
+  &__cotent {
+    width: 500px;
+  }
+  &__pic {
+    height: 100px;
+    width: 100px;
+  }
+}
 
 
