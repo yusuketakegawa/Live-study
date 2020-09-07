@@ -1,4 +1,4 @@
-<div class ="container user__show">  
+<div class ="container user__show">
   <div class ="row">
     <div class="user__show__content col s12 m12 l12">
       <div class="card horizontal user__show__content__card">
@@ -12,33 +12,43 @@
                 <%= user.nickname%>
               </h6>
               <div class ="content__top__btn">
-                <a class="waves-effect waves-light btn">フォロー</a>
-                <a class="waves-effect waves-light btn content__top__message"><i class="material-icons center">email</i></a>
+                <% if current_user != @user %>
+                  <% if @user.followed_by?(current_user) %>
+                    <p><%=link_to "フォロー中", user_relationships_path(@user.id), method: :delete , class: "btn content__top__btn__follow"%></p>
+                  <% else %>
+                    <p><%=link_to "フォロー", user_relationships_path(@user.id), method: :post ,class: "btn"%></p>
+                  <% end %>
+                <% else %>
+                  <p><%= link_to "編集", edit_user_path(current_user), class: "btn"%></p>
+                  <% end %>
+                  <a class="waves-effect wavÏes-light btn content__top__message"><i class="material-icons center">email</i></a>
+                </div>
               </div>
-            </div>  
-            <p class="user__show__content__int">
-              <%= user.introduce%>
-            </p>
-          </div>
-          <div class="card-action">
-            <a href="#">12フォロー</a>
-            <a href="#">1223939フォロー</a>
+              <p class="user__show__content__int">
+                <%= user.introduce%>
+              </p>
+            </div>
+            <div class="card-action">
+              <%=link_to follows_user_path(@user.id) do %>
+                <p><%= @user.followings.count %>フォロー</p>
+              <% end %>
+              <%=link_to followers_user_path(@user.id) do %>
+                <p><%= @user.followers.count %>フォロワー</p>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-</div> 
-</div>  
-
-<div class="container">
-  <div class ="row">
-     <h6 class ="blockquote ">
-    <blockquote>
-      過去に開催した部屋一覧  
-    </blockquote>
-    </h6> 
-   
- <% @study.each do |s|%>
+  </div>
+  <div class="container">
+    <div class ="row">
+      <h6 class ="blockquote ">
+        <blockquote>
+          過去に開催した部屋一覧  
+        </blockquote>
+      </h6>
+      <% @study.each do |s|%>
         <div class ="col s6 m4 l3">
           <div class="card col index__main__block ">
             <div class="card-image ">
@@ -63,7 +73,7 @@
                 <li class="collection-item">  <%= link_to user_path(s.owner.id), class: "reveal__path" do %>
                     <p><%= "ホスト: #{s.owner.nickname}" %></p>
                     <%= image_tag s.owner.image.url, class: "reveal__image",  width: 30, height: 30%>
-                                  <% end %> </li>
+                  <% end %> </li>
                 <li class="collection-item">
                   <p><%= "ツール: #{s.tool.name}" %></p>
                 </li>
@@ -78,6 +88,5 @@
           </div>
         </div>
       <% end %>
- 
+    </div>
   </div>
-</div>    

@@ -10,15 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_030949) do
+ActiveRecord::Schema.define(version: 2020_09_07_004551) do
 
   create_table "joins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "study_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["study_id", "user_id"], name: "index_joins_on_study_id_and_user_id", unique: true
-    t.index ["user_id"], name: "index_joins_on_user_id"
+    t.index ["study_id"], name: "index_joins_on_study_id"
+    t.index ["user_id"], name: "index_joins_on_user_id", unique: true
+  end
+
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "following_id"
+    t.integer "follower_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "studies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,5 +59,4 @@ ActiveRecord::Schema.define(version: 2020_09_06_030949) do
   end
 
   add_foreign_key "joins", "studies"
-  add_foreign_key "joins", "users"
 end
