@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   root "studies#index"
-  resources :rooms, only: [:show]
   resources :studies do
     member do
       delete 'finish'
@@ -15,4 +14,7 @@ Rails.application.routes.draw do
     get :follows, on: :member
     get :followers, on: :member
   end
+
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create,:show]
 end

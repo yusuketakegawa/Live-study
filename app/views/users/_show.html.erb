@@ -20,8 +20,19 @@
                   <% end %>
                 <% else %>
                   <p><%= link_to "編集", edit_user_path(current_user), class: "btn"%></p>
+                <% end %>
+                <% unless @user.id == current_user.id %>
+                  <% if @isRoom == true %>
+                    <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="waves-effect wavÏes-light btn content__top__message"><i class="material-icons center">email</i></a>
+                    <% else %>
+                      <%= form_for @room do |f| %>
+                        <%= fields_for @entry do |e| %>
+                          <%= e.hidden_field :user_id, value: @user.id %>
+                        <% end %>
+                        <%= button_tag '<i class="material-icons">email</i>'.html_safe, type: "submit", class: "waves-effect wavÏes-light btn content__top__message" %>
+                      <% end %>
+                    <% end %>
                   <% end %>
-                  <a class="waves-effect wavÏes-light btn content__top__message"><i class="material-icons center">email</i></a>
                 </div>
               </div>
               <p class="user__show__content__int">

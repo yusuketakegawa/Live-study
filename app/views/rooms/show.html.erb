@@ -1,19 +1,45 @@
 <div class="row">
-  <div class="container">
+  <div class="container message ">
     <div class="col s12 m12 l12">
       <div class="card">
         <div class ="message__content">
+          <% if @messages.present? %>
+            <% @messages.each do |m| %>
+              <% if m.user_id == current_user.id%>
+                <div class="item__right">
+                  <div class="item__right__fukidasi"> <strong><%= m.content %></strong>
+                  </div>
+                  <div class="chat-face">
+                    <%= image_tag m.user.image.url, height: 30, width: 30, class:"user-image" %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="item__left">
+                  <div class="chat-face">
+                    <%= image_tag m.user.image.url, height: 30, width: 30, class:"user-image" %>
+                  </div>
+                  <div class="item__left__fukidasi">
+                    <div class="i"> <strong><%= m.content %></strong>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
-        <div class="card-action">
+        <div class="posts">
           <div class="row">
-            <form class="col s12">
-              <div class="input-field col s10">
-                <i class="material-icons prefix">textsms</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">messages</label>
-              </div>
+            <div class="card-action">
+              <%= form_for @message do |f| %>
+                <div class="input-field col s10">
+                  <i class="material-icons prefix">textsms</i>
+                  <%= f.text_field :content, placeholder: "メッセージを入力して下さい" ,  class:"materialize-textarea" %>
+                  <%= f.hidden_field :room_id, value: @room.id %>
+                </div>
+                <%= f.submit "送信",class: ' btn form-submit'%>
+              <% end %>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

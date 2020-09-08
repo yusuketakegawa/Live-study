@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   has_many :comments
   
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
