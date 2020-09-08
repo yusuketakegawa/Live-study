@@ -1,0 +1,31 @@
+<div class="container">
+  <h6 class="blockquote follow"> 
+    <blockquote>
+      メッセージ一覧
+    </blockquote>
+  </h6>
+  <% @newEntries.each do |e| %>
+    <%= link_to room_path(e.room.id) do %>
+      <div class ="row follow__cotent">
+        <div class=" col s12">
+          <div class="card horizontal ">
+            <div class="card-imag ">
+              <%= image_tag e.user.image.url, class: "follow__pic "%>
+            </div>
+            <div class="card-stacked">
+              <div class="follow__content">
+                <div class="content__top">
+                  <h6 class ="content__top__name">
+                    <%= e.user.nickname%>
+                  </h6>
+                </div>
+              </div>
+              <div class="card-action">
+                <%= Message.find_by(id: e.room.message_ids.last).content %><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
