@@ -27,7 +27,7 @@
                       <% if @join %>
                       <% else %>
                         <%= form_with(model: @study.joins.build, url: study_joins_path(@study), local: true) do |f|%>
-                          <%= button_tag '<i class="material-icons">input</i>参加'.html_safe, :type => "submit", :class =>"btn btn-default btn-s-md join__room__btn" %>
+                          <%= button_tag '<i class="material-icons">input</i>参加'.html_safe, type: "submit", class: "btn btn-default btn-s-md join__room__btn" %>
                         <% end %>
                       <% end %>
                     <% end %>

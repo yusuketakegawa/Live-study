@@ -1,6 +1,50 @@
-
 //messages-show
+.message {
+  max-width: 700px !important;
+}
 .message__content {
-  height: 80vh;
   width: 100%;
+  .item__right {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    .chat-face {
+      display: flex;
+      align-items: center;
+    }
+    &__fukidasi {
+      position: relative;
+      display: inline-block;
+      margin: 1.5em 15px 1.5em 0;
+      padding: 7px 10px;
+      min-width: 120px;
+      max-width: 100%;
+      color: #555;
+      font-size: 16px;
+      background: #b2dfdb;
+      border-radius: 20px;
+    }
+  }
+  .item__left {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+    .chat-face {
+      display: flex;
+      align-items: center;
+    }
+    &__fukidasi {
+      position: relative;
+      display: inline-block;
+      margin: 1.5em 0 1.5em 15px;
+      padding: 7px 10px;
+      min-width: 120px;
+      max-width: 100%;
+      color: #555;
+      font-size: 16px;
+      background: #d1c4e9 ;
+      border-radius: 20px;
+    }
+  }
+
 }
