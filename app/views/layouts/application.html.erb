@@ -18,30 +18,44 @@
         <a href="#" class="sidenav-trigger right " data-target="mobile-links">
           <i class="material-icons">menu</i>
         </a>
-      <% if user_signed_in? %>
-        <ul class="right hide-on-large-only">
-          <li>
-            <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
-              <i class="material-icons">notifications</i>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
-              <i class="material-icons">email</i>
-            <% end %>
-          </li>
-        </ul>
-      <% else %>
-      <% end %>  
         <% if user_signed_in? %>
-          <ul class="right hide-on-med-and-down">
+          <ul class="right hide-on-large-only">
             <li>
-              <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
-                <i class="material-icons">notifications</i>
+              <%= link_to notifications_path, class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
+                <% if unchecked_notifications.any? %>
+                  <div class="notification">
+                    <i class="material-icons n-icon">notifications</i>
+                    <i class="material-icons n-circle">fiber_manual_record</i>
+                  </span>
+                <% else %>
+                  <i class="material-icons">notifications</i>
+                <% end %>
               <% end %>
             </li>
             <li>
-              <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
+              <%= link_to rooms_path, class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
+                <i class="material-icons">email</i>
+              <% end %>
+            </li>
+          </ul>
+        <% else %>
+        <% end %>
+        <% if user_signed_in? %>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <%= link_to notifications_path, class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
+                <% if unchecked_notifications.any? %>
+                  <span class="notification">
+                    <i class="material-icons">notifications</i>
+                    <i class="material-icons">fiber_manual_record</i>
+                  </span>
+                <% else %>
+                  <i class="material-icons">notifications</i>
+                <% end %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to rooms_path, class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
                 <i class="material-icons">email</i>
               <% end %>
             </li>
@@ -55,13 +69,13 @@
                 <i class="material-icons">exit_to_app</i>
               <% end %>
             </li>
-        </ul>
-          <% else %>
+          </ul>
+        <% else %>
           <ul class="right hide-on-med-and-down">
             <li><%= link_to "ログイン", new_user_session_path %></li>
             <li><%= link_to "新規登録", new_user_registration_path  %></li>
-          </ul>  
-          <% end %>
+          </ul>
+        <% end %>
       </nav>
     </div>
     <ul class="sidenav" id="mobile-links">
