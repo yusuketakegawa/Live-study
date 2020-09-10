@@ -3,11 +3,11 @@
     <%= form_with(model: @study, local: true) do |f| %>
       <h3>部屋を更新する</h3>
       <div class="input-field col s12 m6">
-       <%= f.collection_select :tool_id, Tool.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
+       <%= f.collection_select :tool_id, Tool.all, :id, :name, {include_blank: "選択してください"} %>
         <label>使用ツール</label>
       </div>
       <div class="input-field col s12 m6">
-       <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "選択してください", selected: @study.tool} %>
+       <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "選択してください"} %>
         <label>タイプ</label>
       </div>
    

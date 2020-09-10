@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     member do
       delete 'finish'
     end
+    collection do
+      get 'search'
+    end
     resources :joins
     resources :comments, only: :create
   end
