@@ -1,6 +1,5 @@
 <% visitor = notification.visitor%>
 <% visited = notification.visited%>
-
 <div class ="row follow__cotent">
   <div class=" col s12">
     <div class="card horizontal ">
@@ -11,12 +10,16 @@
         <div class="card-stacked">
           <div class="follow__content">
             <div class="content__top">
-              <h6 class ="content__top__name">
-                <%= visitor.nickname%>さんから
-              </h6>
               <% case notification.action %>
               <% when 'follow' then %>
+              <%= visitor.nickname%>さんから
               フォローされました
+              <% when 'message' then %>
+              <%= visitor.nickname%>さんから
+              メッセージが届いています
+              <% when 'study' then %>
+              <%= visitor.nickname%>さんが
+              部屋を作りました
             <% end %>
           </div>
         </div>

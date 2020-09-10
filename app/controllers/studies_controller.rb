@@ -20,6 +20,7 @@ class StudiesController < ApplicationController
     @study = current_user.created_studies.build(study_params)
 
     if @study.save
+      @study.create_notification_study!(current_user, @study.id)
       redirect_to root_path, notice: "部屋を作成しました"
     else
       render :new

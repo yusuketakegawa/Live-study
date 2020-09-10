@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_004717) do
     t.integer "visited_id", null: false
     t.integer "room_id"
     t.integer "message_id"
+    t.integer "study_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
