@@ -60,7 +60,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"マイページ"} do %>
+              <%= link_to mypage_user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"マイページ"} do %>
                 <i class="material-icons">person</i>
               <% end %>
             </li>
@@ -82,7 +82,7 @@
       <div class="menu">
         <% if user_signed_in? %>
           <li>
-            <%= link_to user_path(current_user) do %>
+            <%= link_to mypage_user_path(current_user) do %>
               <i class="material-icons">person</i>
               <p>マイページ</p>
             <% end %>
@@ -112,6 +112,7 @@
       </div>
     </ul>
     <%= render partial:'layouts/notifications'%>
+    <%= breadcrumbs%>
     <%= yield %>
     <div class="fixed-action-btn ">
       <%= link_to new_study_path(current_user) do %>
