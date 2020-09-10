@@ -5,7 +5,5 @@ class CreateJoins < ActiveRecord::Migration[6.0]
       t.references :study, null: false, foreign_key: true
       t.timestamps
     end
-
-    add_index :joins, :user_id, unique: true
   end
 end
