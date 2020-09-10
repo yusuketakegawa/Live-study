@@ -1,6 +1,8 @@
 class StudiesController < ApplicationController
   def index
     @studies = Study.all
+    @search = Study.ransack(params[:q])
+    @search_studies = @search.result(distinct: true).order(created_at: "DESC")
   end
 
   def show
@@ -27,6 +29,17 @@ class StudiesController < ApplicationController
     end
   end
 
+  def search
+    if params[:q].present?
+      @search = Study.ransack(search_params)
+      @search_studies = @search.result(distinct: true).order(created_at: "DESC")
+    else
+      params[:q] = { sorts: 'id desc'}
+      @study = Study.ransack()
+      @search_studies = Study.all
+    end
+  end
+
   def edit
     @study = current_user.created_studies.find(params[:id])
   end
@@ -49,8 +62,16 @@ class StudiesController < ApplicationController
     @study.destroy!
     redirect_to root_path, notice: "部屋を終了しました"
   end
+
+
     private
+
   def study_params
     params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at, :url)
   end
+
+  def search_params
+    params.require(:q).permit(:sorts)
+  end
+
 end
