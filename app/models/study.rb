@@ -16,10 +16,29 @@ class Study < ApplicationRecord
 
   has_many :comments
 
+  has_many :notifications, dependent: :destroy
+
   def created_by?(user)
     return false unless user
     owner_id == user.id
   end
   
+  def create_notification_study!(current_user, study_id)
+    temp_ids = current_user.follower_ids
+    temp_ids.each do |temp_id|
+      save_notification_study!(current_user, study_id, temp_id)
+    end
+  end
 
+  def save_notification_study!(current_user, study_id, visited_id)
+    notification = current_user.active_notifications.new(
+      study_id: study_id,
+      visited_id: visited_id,
+      action: 'study'
+    )
+     if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+  end
 end
