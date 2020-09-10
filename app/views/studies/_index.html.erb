@@ -8,7 +8,7 @@
       </h6>
       <%= search_form_for @search, url: search_studies_path do |f|%>
         <div class="input-field col s12 ">
-          <%= f.select( :sorts, {'並び替え': 'id desc', '終了時間が早い順':'end_at asc', '終了時間が遅い順': 'end_at desc', '参加者順': 'joins_count desc'}, { selected: params[:q] }, { onchange: 'this.form.submit()'})  %>
+          <%= f.select( :sorts, {'並び替え': 'id desc', '終了時間が早い順':'end_at asc', '終了時間が遅い順': 'end_at desc', '参加者順が多い順': 'joins_count desc'}, { selected: params[:q] }, { onchange: 'this.form.submit()'})  %>
         </div>
         <div class="input-field col s12 ">
           <%= f.collection_select :tool_id_eq, Tool.all, :id, :name, {include_blank: "選択してください"} %>

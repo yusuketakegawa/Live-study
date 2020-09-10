@@ -62,3 +62,4 @@ gem 'pry-rails'
 gem 'active_hash', '~> 2.3.0' 
 gem 'paranoia'
 gem 'ransack'
+gem "gretel"

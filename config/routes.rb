@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
   
   resources :users do
+    member do
+      get 'mypage'
+    end
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
