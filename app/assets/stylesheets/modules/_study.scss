@@ -164,6 +164,49 @@
   }
 }
 
+//study-new
+.new__content {
+width: 700px;
+margin-bottom: 100px;
+&__top {
+  height: 250px !important;
+}
+&__image {
+  width: 40%;
+}
+&__right {
+  width: 60%;
+  &__name {
+    margin-bottom: 30px !important;
+  }
+}
+&__field {
+  display: none;
+}
+&__ul {
+  padding-top: 30px !important;
+}
+&__li {
+  border-bottom: none!important;
+  padding: 15px 20px 15px 72px !important;
+}
+.fa-camera {
+  font-size: 30px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: dashed;
+  border-color: rgb(204, 204, 204);
+  &:hover {
+    cursor: pointer;
+  }
+}
+}
+.end__at {
+  width: 15% !important;
+}
 //notification
 .Notification {
   color: white;
