@@ -68,7 +68,7 @@
                 <%= form_with(model: [@study, @comment], local: true) do |f| %>
                   <div class="input-field col s12">
                     <%= f.text_area :text, class: "materialize-textarea" %>
-                    <%= f.label :コメントする%>
+                    <%= f.label :text%>
                   </div>
                   <%= f.submit "送信", class: "btn"%>
                 <% end %>
