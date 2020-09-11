@@ -1,0 +1,71 @@
+<%= form_with(model: study, local: true) do |f| %>
+  <div class ="container study__show">
+    <div class="study__show__content new__content col s12 m12 l12">
+      <div class="card">
+        <div class="card-image study__show__image new__content__top">
+          <div class=" new__content__image ">
+            <% if study.image.present?%>
+              <div class="prev-content">
+                <%= image_tag study.image.url, alt: "preview", class: "prev-image", size: 100%>
+                <%= f.label :image, class: "form-image " do%>
+                  <i class="fa fa-camera prev-contents"></i>
+                  <p>画像を選択する(任意)</p>
+                  <%= f.file_field :image, class: "new__content__field "%>
+                  <% end%>
+                </div>
+              <% else %>
+                <%= f.label :image, class: "form-image " do%>
+                  <i class="fa fa-camera prev-contents"></i>
+                  <p>画像を選択する(任意)</p>
+                  <%= f.file_field :image, class: "new__content__field "%>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="study__show__image__left new__content__right">
+              <div class="input-field col s6 new__content__right__name">
+                <%= f.text_field :name,class: "materialize-textarea" %>
+                <%= f.label :name%>
+              </div>
+              <div class="input-field col s12 new__content__right__name">
+                <%= f.text_area :introduce,class: "materialize-textarea" %>
+                <%= f.label :introduce%>
+              </div>
+            </div>
+          </div>
+          <ul class="collection new__content__ul">
+            <li class="collection-item avatar new__content__li">
+              <i class="material-icons circle teal lighten-1">videocam</i>
+              <div class="input-field col s12 m6">
+                <%= f.collection_select :tool_id, Tool.all, :id, :name %>
+                <%= f.label :tool %>
+              </div>
+            </li>
+            <li class="collection-item avatar new__content__li">
+              <i class="material-icons circle teal lighten-1">link</i>
+              <div class="input-field col s12">
+                <%= f.text_field :url, class:"materialize-textarea" %>
+                <%= f.label :url%>
+              </div>
+            </li>
+            <li class="collection-item avatar new__content__li">
+              <i class="material-icons circle teal lighten-1">grade</i>
+              <div class="input-field col s12 m6">
+                <%= f.collection_select :category_id, Category.all, :id, :name %>
+                <%= f.label :category%>
+              </div>
+            </li>
+            <li class="collection-item avatar new__content__li">
+              <i class="material-icons circle teal lighten-1">alarm</i>
+              <div class="input-field col s12">
+                <%= f.time_field :end_at, class:"end__at" %>
+                <%= f.label :end_at%>
+              </div>
+              <div class="input-field col s12">
+                <%= f.submit study.new_record? ? "Create" : "Update" ,class: "btn" %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
