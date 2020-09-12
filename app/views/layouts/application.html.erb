@@ -15,10 +15,10 @@
         <a href="/" class="brand-logo left">
           <%= image_tag "Live Study-logo-white.png", class: "study__logo"%>
         </a>
-        <a href="#" class="sidenav-trigger right " data-target="mobile-links">
-          <i class="material-icons">menu</i>
-        </a>
         <% if user_signed_in? %>
+          <a href="#" class="sidenav-trigger right " data-target="mobile-links">
+            <i class="material-icons">menu</i>
+          </a>
           <ul class="right hide-on-large-only">
             <li>
               <%= link_to notifications_path, class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
@@ -71,54 +71,56 @@
             </li>
           </ul>
         <% else %>
-          <ul class="right hide-on-med-and-down">
-            <li><%= link_to "ログイン", new_user_session_path %></li>
-            <li><%= link_to "新規登録", new_user_registration_path  %></li>
-          </ul>
-        <% end %>
-      </nav>
-    </div>
-    <ul class="sidenav" id="mobile-links">
-      <div class="menu">
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to mypage_user_path(current_user) do %>
-              <i class="material-icons">person</i>
-              <p>マイページ</p>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete  do %>
-              <i class="material-icons">exit_to_app</i>
-              <p>ログアウト</p>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to  edit_user_path(current_user) do %>
-              <i class="material-icons">edit</i>
-              <p>編集</p>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to  new_study_path(current_user) do %>
-              <i class="material-icons">add</i>
-              <p>新規作成</p>
-            <% end %>
-          </li>
-        <% else %>
-          <li><%= link_to "ログイン", new_user_session_path %></li>
-          <li><%= link_to "新規登録", new_user_registration_path  %></li>
-        <% end %>
+          <ul class="right header__btn">
+            <li>
+              <a class="waves-effect waves-light btn  modal-trigger" href="#modal1">ログイン</a>
+               <%= render partial: 'devise/sessions/new' %>
+              <li>
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal2">新規登録</a>
+                <%= render partial: 'devise/registrations/new' %>
+              </li>
+            </ul>
+          <% end %>
+        </nav>
       </div>
-    </ul>
-    <%= render partial:'layouts/notifications'%>
-    <%= breadcrumbs%>
-    <%= yield %>
-    <div class="fixed-action-btn ">
-      <%= link_to new_study_path(current_user) do %>
-        <div class="btn-floating btn-large  ">
-          <i class="large material-icons">add</i>
-        </div>
-      <% end %>
-    </body>
-  </html>
+      <% if user_signed_in? %>
+        <ul class="sidenav" id="mobile-links">
+          <div class="menu">
+            <li>
+              <%= link_to mypage_user_path(current_user) do %>
+                <i class="material-icons">person</i>
+                <p>マイページ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete  do %>
+                <i class="material-icons">exit_to_app</i>
+                <p>ログアウト</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to  edit_user_path(current_user) do %>
+                <i class="material-icons">edit</i>
+                <p>編集</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to  new_study_path(current_user) do %>
+                <i class="material-icons">add</i>
+                <p>新規作成</p>
+              <% end %>
+            </li>
+          </ul>
+        <% else %>
+        <% end %>
+        <%= render partial:'layouts/notifications'%>
+        <%= breadcrumbs%>
+        <%= yield %>
+        <div class="fixed-action-btn ">
+          <%= link_to new_study_path(current_user) do %>
+            <div class="btn-floating btn-large  ">
+              <i class="large material-icons">add</i>
+            </div>
+          <% end %>
+        </body>
+      </html>

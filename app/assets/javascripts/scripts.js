@@ -29,3 +29,7 @@
       transitionMovement: 10,
     });
   });
+
+   $(document).ready(function () {
+     $(".modal").modal();
+   });

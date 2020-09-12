@@ -1,0 +1,16 @@
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :メールアドレス%>
+        <%= f.email_field :email, autocomplete: "email"%>
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "new-password"%>
+      </div>
+      <div class="actions">
+        <%= render "devise/shared/links" %>
+        <%= f.submit "ログイン", class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
