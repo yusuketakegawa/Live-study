@@ -65,12 +65,12 @@
             <span class="title">掲示板</span>
             <div class="comment">
               <% if current_user %>
-                <%= form_with(model: [@study, @comment], local: true) do |f| %>
+                <%= form_with(model: [@study, @comment], local: true, id: "new_comment") do |f| %>
                   <div class="input-field col s12">
-                    <%= f.text_area :text, class: "materialize-textarea" %>
+                    <%= f.text_area :text, class: "materialize-textarea textbox" %>
                     <%= f.label :text%>
                   </div>
-                  <%= f.submit "送信", class: "btn"%>
+                  <%= f.submit "送信", class: "btn form__submit"%>
                 <% end %>
               <% else %>
                 <strong>

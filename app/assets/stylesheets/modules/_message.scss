@@ -4,6 +4,8 @@
 }
 .message__content {
   width: 100%;
+  height: 80vh;
+  overflow: scroll;
   .item__right {
     display: flex;
     justify-content: flex-end;

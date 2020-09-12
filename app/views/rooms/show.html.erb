@@ -33,10 +33,10 @@
               <%= form_for @message do |f| %>
                 <div class="input-field col s10">
                   <i class="material-icons prefix">textsms</i>
-                  <%= f.text_field :content, placeholder: "メッセージを入力して下さい" ,  class:"materialize-textarea" %>
+                  <%= f.text_field :content, placeholder: "メッセージを入力して下さい" ,  class:"materialize-textarea textbox" %>
                   <%= f.hidden_field :room_id, value: @room.id %>
                 </div>
-                <%= f.submit "送信",class: ' btn form-submit'%>
+                <%= f.submit "送信",class: ' btn form__submit'%>
               <% end %>
             </div>
           </div>
