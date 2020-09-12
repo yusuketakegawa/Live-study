@@ -1,36 +1,51 @@
-<div class ="container show">
-  <div class ="row">
-    <h5 class ="edit__acount">アカウントの編集</h5>
-    <div class ="edit__conteiner">
-    </div>
-    <%= form_for(current_user) do |f|%>
-      <div class="input-field col s6">
-        <%= f.text_field :nickname, autofocus: true%>
-        <%= f.label :ニックネーム%>
-      </div>
-      <div class="col s6">
-        <%= f.label :image, class: 'image_label' do %>
-          <div class="prev-contents">
+<%= form_for(current_user) do |f| %>
+  <div class ="container study__show">
+    <div class="study__show__content new__content col s12 m12 l12">
+      <div class="card">
+        <div class="card-image study__show__image new__content__top">
+          <div class=" new__content__image ">
             <% if current_user.image.present?%>
-                <div class="prev-content">
-                  <%= image_tag current_user.image.url, alt: "preview", class: "prev-image", size: 100%>      
+              <div class="prev-content">
+                <%= image_tag current_user.image.url, alt: "preview", class: "prev-image", size: 100%>
+                <%= f.label :image, class: "form-image " do%>
+                  <i class="fa fa-camera prev-contents"></i>
+                  <p>画像を選択する(任意)</p>
+                  <%= f.file_field :image, class: "new__content__field "%>
+                  <% end%>
                 </div>
-            <% else %>
-                <i class="material-icons">local_see</i>
-            <% end %>    
-          <%= f.file_field :image, type: 'file', id:"img-file" %>
+              <% else %>
+                <%= f.label :image, class: "form-image " do%>
+                  <i class="fa fa-camera prev-contents"></i>
+                  <p>画像を選択する(任意)</p>
+                  <%= f.file_field :image, class: "new__content__field "%>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="study__show__image__left new__content__right">
+              <div class="input-field col s6 new__content__right__name">
+                <%= f.text_field :nickname,class: "materialize-textarea" %>
+                <%= f.label :nickname%>
+              </div>
+              <div class="input-field col s12 new__content__right__name">
+                <%= f.text_area :introduce,class: "materialize-textarea" %>
+                <%= f.label :introduce%>
+              </div>
+            </div>
           </div>
-      <% end %>
+          <ul class="collection new__content__ul">
+            <li class="collection-item avatar new__content__li">
+              <i class="material-icons circle teal lighten-1">email</i>
+              <div class="input-field col s12 m6">
+                <%= f.email_field :email %>
+                <%= f.label :email %>
+              </div>
+            </li>
+              <div class="input-field col s12">
+                <%= f.submit "更新", class: "btn edit__btn"%>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="input-field col s12">
-        <%= f.text_area :introduce,class: "materialize-textarea" %>
-        <%= f.label :自己紹介%>
-      </div>
-      <div class="input-field col s12">
-        <%= f.email_field :email%>
-        <%= f.label :メールアドレス%>
-      </div>
-      <%= f.submit "更新", class: "btn col s6"%>
-    <% end %>
-  </div>
-</div>
+    </div>
+  <% end %>
