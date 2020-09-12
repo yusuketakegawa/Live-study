@@ -160,9 +160,12 @@
     color: #26a69a;
   }
   .comments {
-    margin-top: 20px;
-    height: 100px;
+    margin: 20px 0;
+    height: 150px;
     overflow: scroll;
+    border:#BBBB 1px solid;
+    border-radius: 5px;
+    padding: 10px;
   }
 }
 
