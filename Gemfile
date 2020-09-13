@@ -64,3 +64,4 @@ gem 'paranoia'
 gem 'ransack'
 gem "gretel"
 gem 'font-awesome-sass'
+gem 'kaminari'
