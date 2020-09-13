@@ -1,6 +1,6 @@
 class StudiesController < ApplicationController
   def index
-    @studies = Study.all
+    @studies = Study.order(created_at: "DESC").page(params[:page]).per(12)
     @search = Study.ransack(params[:q])
     @search_studies = @search.result(distinct: true).order(created_at: "DESC")
   end
@@ -15,12 +15,14 @@ class StudiesController < ApplicationController
 
 
   def new
-    @ready = Study.find_by(owner_id:current_user.id, deleted_at: nil)
-    if !@ready.nil?
-      redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了してください"
-    else
-      @study = current_user.created_studies.build
-    end
+    # @ready = Study.find_by(owner_id:current_user.id, deleted_at: nil)
+    # if !@ready.nil?
+    #   redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了してください"
+    # else
+    #   @study = current_user.created_studies.build
+    # end
+
+        @study = current_user.created_studies.build
   end
   
   def create
