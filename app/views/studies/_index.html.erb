@@ -23,8 +23,56 @@
     </div>
   </div>
   <div class="jscroll">
-  <%= render partial: 'study__box', locals: {studies: @studies}, class: "jscroller"%>
-<%= paginate studies%>
+ <div class ="row">
+    <div class ="index__main">
+      <h6 class ="blockquote ">
+        <blockquote>
+          現在開催中の部屋一覧
+        </blockquote>
+      </h6>
+      <% studies.each do |s|%>
+        <div class ="col s6 m4 l3">
+          <div class="card col index__main__block ">
+            <div class="card-image ">
+              <%= image_tag s.image.url, class: 'index__main__image'%>
+            </div>
+            <div class="card-content index__main__card">
+              <span class="card-title activator grey-text text-darken-4 index__main__title"><%= s.name %><i class="material-icons right">more_vert</i></span>
+              <div class="index__main__content">
+                <div class="index__main__content__right">
+                  <%= link_to study_path(s.id), class: "btn " do%>
+                    詳細
+                  <% end %>
+                </div>
+                <div class ="index__main__content__left">
+                  <%= image_tag s.tool.image, size:50%>
+                </div>
+              </div>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4 reveal__title"><%= s.name %><i class="material-icons right">close</i></span>
+              <ul class="collection ">
+                <li class="collection-item">  <%= link_to user_path(s.owner.id), class: "reveal__path" do %>
+                    <p><%= "ホスト: #{s.owner.nickname}" %></p>
+                    <%= image_tag s.owner.image.url, class: "reveal__image",  width: 30, height: 30%>
+                  <% end %> </li>
+                <li class="collection-item">
+                  <p>ツール</p><p class="item__status"><%= " #{s.tool.name}" %></p>
+                </li>
+                <li class="collection-item">
+                  <p>タイプ</p><p class="item__status"><%= " #{s.category.name}" %></p>
+                </li>
+                <li class="collection-item">
+                  <p>終了予定</p><p class="item__status"><%="#{s.end_at.strftime('%H:%M')}"%></p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   </div>
 </div>
 <footer class="page-footer deep-purple accent-2">

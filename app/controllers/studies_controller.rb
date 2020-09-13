@@ -37,14 +37,8 @@ class StudiesController < ApplicationController
   end
 
   def search
-    if params[:q].present?
-      @search = Study.ransack(search_params)
+      @search = Study.ransack(params[:q])
       @search_studies = @search.result(distinct: true).order(created_at: "DESC")
-    else
-      params[:q] = { sorts: 'id desc'}
-      @study = Study.ransack()
-      @search_studies = Study.all
-    end
   end
 
   def edit
@@ -77,8 +71,6 @@ class StudiesController < ApplicationController
     params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at, :url)
   end
 
-  def search_params
-    params.require(:q).permit(:sorts)
-  end
+
 
 end
