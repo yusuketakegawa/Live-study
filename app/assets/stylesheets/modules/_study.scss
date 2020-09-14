@@ -138,11 +138,21 @@
         &__image {
           height: 30px;
           width: 30px !important;
+          border-radius: 50% !important;
+          border: #26a69a 1px solid;
         }
         &__container {
           display: flex;
           height: 30px;
           font-size: 10px;
+          .host__container {
+            display: flex;
+            align-items: center;
+            margin-left: 5px;
+            .name {
+              margin-left: 5px;
+            }
+          }
           .host__name {
             display: flex;
             align-items: center;
@@ -166,8 +176,16 @@
     max-width: 700px;
     margin-top: 70px;
   }
+  .join {
+    display: flex;
+  }
   .join__user {
     display: flex;
+    margin-right: 15px;
+    &__image {
+      border-radius: 50%;
+      border: #26a69a 1px solid;
+    }
     &__name {
       line-height: 30px;
       font-size: 12px;
