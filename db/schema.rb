@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_004717) do
+ActiveRecord::Schema.define(version: 2020_09_14_071946) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 2020_09_09_004717) do
     t.bigint "study_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_joins_on_deleted_at"
     t.index ["study_id"], name: "index_joins_on_study_id"
-    t.index ["user_id"], name: "index_joins_on_user_id", unique: true
+    t.index ["user_id"], name: "index_joins_on_user_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

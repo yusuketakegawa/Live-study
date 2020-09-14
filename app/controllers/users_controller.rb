@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   def show
     @user=User.find(params[:id])
-    @study = @user.created_studies.only_deleted
+    @studyNow = @user.created_studies.without_deleted
+    @study = @user.created_studies.only_deleted.order(created_at: "DESC").page(params[:page]).per(12)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -25,7 +26,8 @@ class UsersController < ApplicationController
 
   def mypage
     @user=User.find(params[:id])
-    @study = @user.created_studies.only_deleted
+    @studyNow = @user.created_studies.without_deleted
+    @study = @user.created_studies.only_deleted.order(created_at: "DESC").page(params[:page]).per(12)
   end
 
   def edit
