@@ -17,11 +17,17 @@
 .notification{
   position: relative;
 }
-.n-circle {
+.n-circle-a {
   position: absolute;
   color: #efa04c;
   top: 7px;
   right: 5px;
+}
+.n-circle-b {
+  position: absolute;
+  color: #efa04c;
+  top: 7px;
+  left: 10px;
 }
 .new__user {
   display: flex;

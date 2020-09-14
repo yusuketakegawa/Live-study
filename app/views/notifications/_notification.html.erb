@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="card-action">
-          <%= time_ago_in_words(notification.created_at).upcase %>
+          <%= "#{time_ago_in_words(notification.created_at).upcase}前" %>
         <% end %>
       </div>
     </div>

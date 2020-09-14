@@ -25,7 +25,7 @@
                 <% if unchecked_notifications.any? %>
                   <div class="notification">
                     <i class="material-icons n-icon">notifications</i>
-                    <i class="material-icons n-circle">fiber_manual_record</i>
+                    <i class="material-icons n-circle-a">fiber_manual_record</i>
                   </span>
                 <% else %>
                   <i class="material-icons">notifications</i>
@@ -46,8 +46,8 @@
               <%= link_to notifications_path, class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
                 <% if unchecked_notifications.any? %>
                   <span class="notification">
-                    <i class="material-icons">notifications</i>
-                    <i class="material-icons">fiber_manual_record</i>
+                    <i class="material-icons n-icon">notifications</i>
+                    <i class="material-icons n-circle-b">fiber_manual_record</i>
                   </span>
                 <% else %>
                   <i class="material-icons">notifications</i>
