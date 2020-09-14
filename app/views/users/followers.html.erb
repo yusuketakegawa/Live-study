@@ -1,37 +1,70 @@
-<div class="container">
-<h6 class ="blockquote follow">
-  <blockquote>
-    フォロワー
-  </blockquote>
-</h6>
-<% @users.each do |user| %>
-  <%= link_to user_path(user.id) do %>
-  <div class ="row follow__cotent">
-    <div class=" col s12">
-      <div class="card horizontal ">
-        <div class="card-imag ">
-          <%= image_tag user.image.url, class: "follow__pic "%>
-        </div>
-        <div class="card-stacked">
-          <div class="follow__content">
-            <div class="content__top">
-              <h6 class ="content__top__name">
-                <%= user.nickname%>
-              </h6>
+<div class="contaienr">
+  <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s6 followtab teal white"><a class="tab" href="#test-swipe-1">フォロー</a></li>
+    <li class="tab col s6 followtab teal white"><a class="active tab" href="#test-swipe-2" >フォロワー</a></li>
+  </ul>
+  <div id="test-swipe-1" class="col s12 ">   <% @follow__users.each do |user| %>
+      <%= link_to user_path(user.id) do %>
+        <div class ="row follow__cotent">
+          <div class=" col s12">
+            <div class="card horizontal ">
+              <div class="card-imag ">
+                <%= image_tag user.image.url, class: "follow__pic "%>
+              </div>
+              <div class="card-stacked">
+                <div class="follow__content">
+                  <div class="content__top">
+                    <h6 class ="content__top__name">
+                      <%= user.nickname%>
+                    </h6>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <% if current_user != user %>
+                    <% if user.followed_by?(current_user) %>
+                      <p><%=link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn" %></p>
+                    <% else %>
+                      <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn" %></p>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-          <div class="card-action">
-            <% if current_user != user %>
-              <% if user.followed_by?(current_user) %>
-                <p><%=link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn" %></p>
-              <% else %>
-                <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn" %></p>
-              <% end %>
-            <% end %>
-          <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
-<% end %>
+  <div id="test-swipe-2" class="col s12 ">     <% @users.each do |user| %>
+      <%= link_to user_path(user.id) do %>
+        <div class ="row follow__cotent">
+          <div class=" col s12">
+            <div class="card horizontal ">
+              <div class="card-imag ">
+                <%= image_tag user.image.url, class: "follow__pic "%>
+              </div>
+              <div class="card-stacked">
+                <div class="follow__content">
+                  <div class="content__top">
+                    <h6 class ="content__top__name">
+                      <%= user.nickname%>
+                    </h6>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <% if current_user != user %>
+                    <% if user.followed_by?(current_user) %>
+                      <p><%=link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn" %></p>
+                    <% else %>
+                      <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn" %></p>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
