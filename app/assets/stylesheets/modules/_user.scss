@@ -37,10 +37,26 @@
 }
 
 //follow
+.tab {
+  color: #26a69a!important;
+}
+.followtab {
+  width: 50% !important;
+}
+.tabs {
+  max-width: 800px!important;
+}
+.indicator {
+  background-color: #26a69a!important;
+}
+a.active:focus {
+  background-color: rgba(62, 238, 200, 0.2)!important;
+}
 .follow {
   margin-top: 50px;
   &__cotent {
     width: 450px;
+    margin:0 auto!important;
   }
   &__pic {
     height: 100px;
