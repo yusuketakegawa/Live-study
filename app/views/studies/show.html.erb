@@ -10,8 +10,12 @@
             <div class="show__host">
               <div class="show__host__container">
                 <p class ="show__host__name teal lighten-1">  <i class="material-icons">account_circle</i>ホスト</p>
-                <%= image_tag @study.owner.image.url, class: "show__host__image"%>
-                <div class="name"><%= @study.owner.nickname%></div>
+                <%= link_to user_path(@study.owner.id) do%>
+                <div class="host__container">
+                  <%= image_tag @study.owner.image.url, class: "show__host__image"%>
+                  <div class="name"><%= @study.owner.nickname%></div>
+                </div>
+                <% end%>
               </div>
               <% if @study.created_by?(current_user)%>
                 <%= link_to "編集", edit_study_path(@study), class:"btn show__host__btn"%>
@@ -41,18 +45,21 @@
           <li class="collection-item avatar">
             <i class="material-icons circle teal lighten-1">link</i>
             <span class="title">リンク</span>
-            <p>First Line 
-            </p>
+           <p><%= text_url_to_link(h(@study.url)).html_safe %></p>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle teal lighten-1">people</i>
             <div class="title">参加メンバー</div>
-            <% @joins.each do |join|%>
-              <div class="join__user">
-                <%= image_tag join.user.image.url, width: 30, height: 30%>
-                <div class="join__user__name"><%= join.user.nickname%></div>
-              </div>
-            <% end %>
+            <div class="join">
+              <% @joins.each do |join|%>
+                <%= link_to user_path(join.user.id) do%>
+                <div class="join__user">
+                  <%= image_tag join.user.image.url, width: 30, height:30 , class: "join__user__image"%>
+                  <div class="join__user__name"><%= join.user.nickname%></div>
+                </div>
+                <% end %>
+              <% end %>
+            </div>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle teal lighten-1">alarm</i>
