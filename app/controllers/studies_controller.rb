@@ -1,4 +1,5 @@
 class StudiesController < ApplicationController
+   before_action :move_to_index, except: [:index]
   def index
     @studies = Study.without_deleted.order(created_at: "DESC").page(params[:page]).per(12)
     @search = Study.ransack(params[:q])
@@ -15,12 +16,12 @@ class StudiesController < ApplicationController
 
 
   def new
-    # @ready = Study.find_by(owner_id:current_user.id, deleted_at: nil)
-    # if !@ready.nil?
-    #   redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了してください"
-    # else
-    #   @study = current_user.created_studies.build
-    # end
+    @ready = Study.find_by(owner_id:current_user.id, deleted_at: nil)
+    if !@ready.nil?
+      redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了してください"
+    else
+      @study = current_user.created_studies.build
+    end
 
         @study = current_user.created_studies.build
   end
@@ -71,6 +72,10 @@ class StudiesController < ApplicationController
     params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at, :url)
   end
 
-
+   def move_to_index
+    unless user_signed_in?
+      redirect_to root_path, notice: "アカウント登録もしくはログインしてください"
+    end
+  end
 
 end
