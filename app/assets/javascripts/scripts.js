@@ -1,5 +1,5 @@
 
-//サイドナビバー
+  //サイドナビバー
   $(document).ready(function () {
     $(".sidenav").sidenav({
       edge: 'right',
@@ -7,11 +7,13 @@
       outDuration: 400
     });
   });
+  
   //セレクトボックス
   $(document).ready(function () {
     $("select").formSelect();
   });
-//フラッシュメッセージ 
+
+  //フラッシュメッセージ 
   $(function () {
     $(".Notification").fadeOut(5000);
   });
@@ -30,11 +32,13 @@
     });
   });
 
+  //モーダル
    $(document).ready(function () {
      $(".modal").modal();
    });
 
-     $(document).ready(function () {
-       $(".tabs").tabs();
-     });
-        
+   //タブスイッチ
+  $(document).ready(function () {
+    $(".tabs").tabs();
+  });
+    

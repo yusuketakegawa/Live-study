@@ -18,7 +18,7 @@ class StudiesController < ApplicationController
   def new
     @ready = Study.find_by(owner_id:current_user.id, deleted_at: nil)
     if !@ready.nil?
-      redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了してください"
+      redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了/削除してください"
     else
       @study = current_user.created_studies.build
     end
