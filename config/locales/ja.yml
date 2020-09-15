@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      study: 勉強
+    attributes:
+      study:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        introduce: 説明
+        name: 部屋名
+        url: URL
+        end_at: 終了時間
+        tool: 使用ツール
+        category: 部屋のカテゴリー
+   
+ 

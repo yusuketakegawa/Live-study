@@ -6,7 +6,7 @@ class Study < ApplicationRecord
   validates :end_at, presence: true
   validates :tool_id, presence: true
   validates :category_id, presence: true
-
+  validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category

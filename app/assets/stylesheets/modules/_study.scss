@@ -211,6 +211,9 @@
       height: 50px;
     }
   }
+  .end_at__title {
+    font-weight: bold;
+  }
   .comment__validate {
     font-size: 12px;
     color: #26a69a;
@@ -271,4 +274,9 @@ margin-bottom: 100px;
 //notification
 .Notification {
   color: white;
+}
+
+//error
+.studies__error {
+  font-weight: bold;
 }
