@@ -3,14 +3,14 @@
   <li class="tab col s3 followtab"><a class="active tab" href="#test-swipe-2">フォロワー</a></li>
 </ul>
 
-<ul class="collection">
+<ul class="collection follow">
   <div id="test-swipe-1" class="col s12 ">
     <% @follow__users.each do |user|%>
-      <li class="collection-item ">
+      <li class="collection-item follow__item">
         <%= link_to user_path(user.id) do %>
-          <div class="collection__avatar">
-            <%= image_tag user.image.url, class: "collection__avatar__pic "%>
-              <div class="collection__avatar__name">
+          <div class="follow__avatar">
+            <%= image_tag user.image.url, class: "follow__avatar__pic "%>
+              <div class="follow__avatar__name">
                 <%= user.nickname%>
               </div>  
           </div>  
@@ -26,14 +26,14 @@
     <%end %>
   </div>
 </ul>
-<ul class="collection">
+<ul class="collection follow">
   <div id="test-swipe-2" class="col s12 ">
     <% @follower__users.each do |user|%>
-      <li class="collection-item ">
+      <li class="collection-item follow__item">
         <%= link_to user_path(user.id) do %>
-          <div class="collection__avatar">
-            <%= image_tag user.image.url, class: "collection__avatar__pic "%>
-              <div class="collection__avatar__name">
+          <div class="follow__avatar">
+            <%= image_tag user.image.url, class: "follow__avatar__pic "%>
+              <div class="follow__avatar__name">
                 <%= user.nickname%>
               </div>  
           </div>  

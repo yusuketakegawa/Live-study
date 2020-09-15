@@ -6,26 +6,26 @@
   </h6>
   <% @newEntries.each do |e| %>
     <%= link_to room_path(e.room.id) do %>
-      <div class ="row follow__cotent">
-        <div class=" col s12">
-          <div class="card horizontal ">
-            <div class="card-imag ">
-              <%= image_tag e.user.image.url, class: "follow__pic "%>
+     <ul class="collection message__index">
+      <li class="collection-item collection-message">
+          <p class="last__date">
+                <%= Message.find_by(id: e.room.message_ids.last).created_at.strftime("%m/%d %H:%M") %>
+              </p> 
+        <%= image_tag e.user.image.url, class: "pic "%>
+        <div class="message__avatar">
+          <p class="message__avatar__name">
+            <%= e.user.nickname%>
+          </p>  
+            <div class= "message__avatar__message">
+              <p class="last__name">
+              <%= Message.find_by(id: e.room.message_ids.last).user.nickname %>:
+              </p>  
+              <p class="last__message">
+                <%= Message.find_by(id: e.room.message_ids.last).content %>
+              </p>   
             </div>
-            <div class="card-stacked">
-              <div class="follow__content">
-                <div class="content__top">
-                  <h6 class ="content__top__name">
-                    <%= e.user.nickname%>
-                  </h6>
-                </div>
-              </div>
-              <div class="card-action">
-                <%= Message.find_by(id: e.room.message_ids.last).content %><br>
-              </div>
-            </div>
-          </div>
         </div>
+      </li>
+    </ul>
       <% end %>
     <% end %>
-  </div>
