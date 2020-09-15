@@ -44,7 +44,7 @@
   width: 50% !important;
 }
 .tabs {
-  max-width: 800px!important;
+  max-width: 600px!important;
 }
 .indicator {
   background-color: #26a69a!important;
@@ -52,18 +52,22 @@
 a.active:focus {
   background-color: rgba(62, 238, 200, 0.2)!important;
 }
-.follow {
-  margin-top: 50px;
-  &__cotent {
-    width: 450px;
-    margin:0 auto!important;
+.collection {
+  max-width: 600px;
+  margin:0 auto !important;
+  .collection-item  {
+    display: flex;
   }
-  &__pic {
-    height: 100px;
-    width: 100px;
+  &__avatar {
+    display: flex;
+    width: 200px;
+    margin-right: 100px;
+    &__pic {
+      height: 100px;
+      width: 100px;
+    }
   }
 }
-
 
 //edit
 .edit__btn{
