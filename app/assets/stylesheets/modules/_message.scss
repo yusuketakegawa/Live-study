@@ -52,3 +52,40 @@
     .room__btn {
       margin-top: 15px;
     }
+
+    //message-index 
+    .pic {
+      height: 70px;
+      width: 70px;
+    }
+    .message__index {
+      margin: 0  auto !important;
+      max-width: 600px;
+    }
+    .collection-message {
+      position: relative;
+      display: flex;
+      padding: 10px 20px;
+      .last__date {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color:gray;
+      }
+    }
+    .message__avatar{
+      margin-left: 10px;
+      &__name {
+        font-weight: bold;
+        font-size: 17px;
+      }
+      &__message {
+        display: flex;
+        margin-top: 10px;
+        color: gray;
+        .last__message {
+          margin-left: 5px;
+        }
+      }
+    }
+ 
