@@ -1,5 +1,5 @@
 class JoinsController < ApplicationController
- 
+  
   def create
     @ready = Join.find_by(user_id:current_user.id, deleted_at: nil)
     if !@ready.nil?

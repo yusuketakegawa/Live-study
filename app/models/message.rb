@@ -2,10 +2,8 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :room
   has_many :notifications, dependent: :destroy
-
-
-
-
+  
+  #メッセージを送信した時に通知が来る処理
   def save_notification_message!(current_user, room_id, message_id)
     temp_ids = Entry.where(room_id: room_id).where.not(user_id: current_user.id)
     @temp_ids = temp_ids.find_by(room_id: room_id)

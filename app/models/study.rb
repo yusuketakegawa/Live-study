@@ -23,6 +23,7 @@ class Study < ApplicationRecord
     owner_id == user.id
   end
   
+  #フォローしているユーザーが部屋を開催した時のみ通知が来る
   def create_notification_study!(current_user, study_id)
     temp_ids = current_user.follower_ids
     temp_ids.each do |temp_id|
