@@ -10,118 +10,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <div class= "navbar-fixed shadow-text">
-      <nav class="nav-wraper  deep-purple accent-2">
-        <a href="/" class="brand-logo left">
-          <%= image_tag "Live Study-logo-white.png", class: "study__logo"%>
-        </a>
-        <% if user_signed_in? %>
-          <a href="#" class="sidenav-trigger right " data-target="mobile-links">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul class="right hide-on-large-only">
-            <li>
-              <%= link_to notifications_path, class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
-                <% if unchecked_notifications.any? %>
-                  <div class="notification">
-                    <i class="material-icons n-icon">notifications</i>
-                    <i class="material-icons n-circle-a">fiber_manual_record</i>
-                  </span>
-                <% else %>
-                  <i class="material-icons">notifications</i>
-                <% end %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to rooms_path, class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
-                <i class="material-icons">email</i>
-              <% end %>
-            </li>
-          </ul>
-        <% else %>
-        <% end %>
-        <% if user_signed_in? %>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <%= link_to notifications_path, class: "tooltipped", data: {position: "bottom", tooltip:"通知"} do %>
-                <% if unchecked_notifications.any? %>
-                  <span class="notification">
-                    <i class="material-icons n-icon">notifications</i>
-                    <i class="material-icons n-circle-b">fiber_manual_record</i>
-                  </span>
-                <% else %>
-                  <i class="material-icons">notifications</i>
-                <% end %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to rooms_path, class: "tooltipped", data: {position: "bottom", tooltip:"メッセージ"} do %>
-                <i class="material-icons">email</i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to mypage_user_path(current_user), class: "tooltipped", data: {position: "bottom", tooltip:"マイページ"} do %>
-                <i class="material-icons">person</i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete, class: "tooltipped", data: {position: "bottom", tooltip:"ログアウト"} do %>
-                <i class="material-icons">exit_to_app</i>
-              <% end %>
-            </li>
-          </ul>
-        <% else %>
-          <ul class="right header__btn">
-            <li>
-              <a class="waves-effect waves-light btn  modal-trigger" href="#modal1">ログイン</a>
-               <%= render partial: 'devise/sessions/new' %>
-            </li>    
-            <li>
-              <a class="waves-effect waves-light btn modal-trigger" href="#modal2">新規登録</a>
-              <%= render partial: 'devise/registrations/new' %>
-            </li>
-            </ul>
-          <% end %>
-        </nav>
-      </div>
-      <% if user_signed_in? %>
-        <ul class="sidenav" id="mobile-links">
-          <div class="menu">
-            <li>
-              <%= link_to mypage_user_path(current_user) do %>
-                <i class="material-icons">person</i>
-                <p>マイページ</p>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete  do %>
-                <i class="material-icons">exit_to_app</i>
-                <p>ログアウト</p>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to  edit_user_path(current_user) do %>
-                <i class="material-icons">edit</i>
-                <p>編集</p>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to  new_study_path(current_user) do %>
-                <i class="material-icons">add</i>
-                <p>新規作成</p>
-              <% end %>
-            </li>
-          </ul>
-        <% else %>
-        <% end %>
-        <%= render partial:'layouts/notifications'%>
-        <%= breadcrumbs%>
-        <%= yield %>
-        <div class="fixed-action-btn ">
-          <%= link_to new_study_path(current_user) do %>
-            <div class="btn-floating btn-large  ">
-              <i class="large material-icons">add</i>
-            </div>
-          <% end %>
-        </body>
-      </html>
+    <%= render partial:'layouts/header'%>
+    <%= render partial:'layouts/notifications'%>
+    <%= breadcrumbs%>
+    <%= yield %>
+    <div class="fixed-action-btn ">
+      <%= link_to new_study_path(current_user) do %>
+        <div class="btn-floating btn-large  ">
+          <i class="large material-icons">add</i>
+        </div>
+      <% end %>
+    </div>  
+    </body>
+  </html>

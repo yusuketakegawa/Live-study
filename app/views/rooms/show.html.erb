@@ -9,15 +9,19 @@
                 <div class="item__right">
                   <div class="item__right__fukidasi"> <strong><%= m.content %></strong>
                   </div>
-                  <div class="chat-face">
-                    <%= image_tag m.user.image.url, height: 30, width: 30, class:"user-image" %>
-                  </div>
+                  <%= link_to user_path(current_user), class:"message__user__path" do%>
+                    <div class="chat-face">
+                      <%= image_tag m.user.image.url, height: 30, width: 30, class:"user-image" %>
+                    </div>
+                  <%end %>  
                 </div>
               <% else %>
                 <div class="item__left">
-                  <div class="chat-face">
-                    <%= image_tag m.user.image.url, height: 30, width: 30, class:"user-image" %>
-                  </div>
+                  <%= link_to user_path(m.user_id), class:"message__user__path" do%>
+                    <div class="chat-face">
+                      <%= image_tag m.user.image.url, height: 30, width: 30, class:"user-image" %>
+                    </div>
+                  <% end%>
                   <div class="item__left__fukidasi">
                     <div class="i"> <strong><%= m.content %></strong>
                     </div>
