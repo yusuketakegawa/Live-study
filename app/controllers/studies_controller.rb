@@ -1,5 +1,7 @@
 class StudiesController < ApplicationController
    before_action :move_to_index, except: [:index]
+   before_action :set_study, only: [:edit, :update, :destroy, :finish]
+
   def index
     @studies = Study.without_deleted.order(created_at: "DESC").page(params[:page]).per(12)
     @search = Study.ransack(params[:q])
@@ -14,16 +16,16 @@ class StudiesController < ApplicationController
     @comments = @study.comments.includes(:user)
   end
 
-
   def new
-    @ready = Study.find_by(owner_id:current_user.id, deleted_at: nil)
-    if !@ready.nil?
+    #論理削除されている部屋以外にテーブルにレコードが存在していた場合新しい部屋は作れない
+    @already = Study.find_by(owner_id:current_user.id, deleted_at: nil)
+    if !@already.nil?
       redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了/削除してください"
     else
       @study = current_user.created_studies.build
     end
 
-        @study = current_user.created_studies.build
+    @study = current_user.created_studies.build
   end
   
   def create
@@ -43,39 +45,38 @@ class StudiesController < ApplicationController
   end
 
   def edit
-    @study = current_user.created_studies.find(params[:id])
   end
 
   def update
-    @study = current_user.created_studies.find(params[:id])
     if @study.update!(study_params)
       redirect_to @study, notice: "更新しました"
     end
   end
 
   def destroy
-    @study = current_user.created_studies.find(params[:id])
     @study.really_destroy!
     redirect_to root_path, notice: "部屋を削除しました"
   end
 
   def finish
-    @study = current_user.created_studies.find(params[:id])
     @study.destroy!
     redirect_to root_path, notice: "部屋を終了しました"
   end
 
 
-    private
-
+  private
   def study_params
     params.require(:study).permit(:name, :introduce, :image, :tool_id, :category_id, :end_at, :url)
   end
 
-   def move_to_index
+  def move_to_index
     unless user_signed_in?
       redirect_to root_path, notice: "アカウント登録もしくはログインしてください"
     end
   end
+
+  def set_study
+    @study = current_user.created_studies.find(params[:id])
+  end 
 
 end

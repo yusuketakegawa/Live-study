@@ -16,8 +16,7 @@ class JoinsController < ApplicationController
       redirect_to study, notice: "参加しました"
       return
     else
-      # redirect_to root_path, notice: "一度に複数の部屋には入れません"
-      # return
+
     end
   end
 
