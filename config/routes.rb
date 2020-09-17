@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   root "studies#index"
-  resources :studies do
+  resources :studies, except: [:index] do
     member do
       delete 'finish'
     end
