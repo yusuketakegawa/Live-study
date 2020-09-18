@@ -67,7 +67,7 @@ RSpec.describe StudiesController, type: :controller do
         get :new
         expect(response).to have_http_status "302"
       end
-      it "redirects the page to /users/sign_in" do
+      it "redirects the page to root_path" do
         get :new
         expect(response).to redirect_to root_path
       end
@@ -93,7 +93,7 @@ RSpec.describe StudiesController, type: :controller do
         get :new
         expect(response).to have_http_status "302"
       end
-      it "redirects the page to /users/sign_in" do
+      it "redirects the page to root_path" do
         get :new
         expect(response).to redirect_to root_path
       end
@@ -122,7 +122,7 @@ RSpec.describe StudiesController, type: :controller do
         get :new
         expect(response).to have_http_status "302"
       end
-      it "redirects the page to /users/sign_in" do
+      it "redirects the page to root_path" do
         get :new
         expect(response).to redirect_to root_path
       end
@@ -140,6 +140,20 @@ RSpec.describe StudiesController, type: :controller do
         expect {
           delete :destroy, params: {id: @study.id}
         }.to change(@user.created_studies, :count).by(-1)
+      end
+    end
+    context "as a guest user" do
+      it "does not respond successfully" do
+        get :new
+        expect(response).to_not be_successful
+      end
+      it "returns a 302 response" do
+        get :new
+        expect(response).to have_http_status "302"
+      end
+      it "redirects the page to root_path" do
+        get :new
+        expect(response).to redirect_to root_path
       end
     end
   end
