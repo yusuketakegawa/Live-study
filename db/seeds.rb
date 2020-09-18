@@ -9,4 +9,4 @@
     category_id: "1",
     end_at: "14:50:00"
   )
-  end
+end

@@ -25,14 +25,11 @@ RSpec.describe Study, type: :model do
     expect(@study).to_not be_valid
   end
   it "urlが正しい形でないと保存されないこと" do
-    @study = FactoryBot.build(:study, url: "ttps://us04web.zoom.us/j/4336842031?pwd=aFIvTkpDNCtSa3c1dEl3M1JZcVovZz09" )
+    @study = FactoryBot.build(:study, url: "ttps://us04web.zoom.us/j/4336842031?pwd=aFIvTkpDNCtSa3c1dEl3M1JZcVovZz09")
     expect(@study).to_not be_valid
   end
   it "開催してるホストがいないと保存されないこと" do
     @study = FactoryBot.build(:study, owner_id: nil)
     expect(@study).to_not be_valid
   end
-
-  
-
 end

@@ -4,7 +4,7 @@
       メッセージ一覧
     </blockquote>
   </h6>
-  <% @newEntries.each do |e| %>
+  <% @new_entries.each do |e| %>
     <%= link_to room_path(e.room.id) do %>
      <ul class="collection message__index">
       <li class="collection-item collection-message">

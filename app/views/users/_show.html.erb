@@ -23,8 +23,8 @@
                   <p><%= link_to "編集", edit_user_path(current_user), class: "btn"%></p>
                 <% end %>
                 <% unless @user.id == current_user.id %>
-                  <% if @isRoom == true %>
-                    <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="waves-effect wavÏes-light btn content__top__message"><i class="material-icons center">email</i></a>
+                  <% if @isroom == true %>
+                    <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="waves-effect wavÏes-light btn content__top__message"><i class="material-icons center">email</i></a>
                     <% else %>
                       <%= form_for @room do |f| %>
                         <%= fields_for @entry do |e| %>
@@ -60,7 +60,7 @@
           現在開催中の部屋  
         </blockquote>
       </h6>
-     <%= render partial: "studies/study__box", locals: { studies: @studyNow } %>
+     <%= render partial: "studies/study__box", locals: { studies: @studynow } %>
     </div>
   </div>
   <div class="container">

@@ -1,11 +1,9 @@
 class JoinsController < ApplicationController
-  
   def create
-    @ready = Join.find_by(user_id:current_user.id, deleted_at: nil)
-    if !@ready.nil?
+    @ready = Join.find_by(user_id: current_user.id, deleted_at: nil)
+    unless @ready.nil?
       redirect_to root_path, notice: "一度に複数の部屋には入れません"
       return
-    else
     end
     study = Study.find(params[:study_id])
     @join = current_user.joins.build do |t|
@@ -15,8 +13,6 @@ class JoinsController < ApplicationController
     if @join.save
       redirect_to study, notice: "参加しました"
       return
-    else
-
     end
   end
 

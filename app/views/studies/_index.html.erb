@@ -30,7 +30,7 @@
           現在開催中の部屋一覧
         </blockquote>
       </h6>
-     <%= render partial: "study__box", locals: { studies: @studies } %>
+     <%= render partial: "study__box", locals: { studies: @studies, studies: @search_studies } %>
     </div>
   </div>
 <%= paginate studies%>
