@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :move_to_index, only: [:show]
+  before_action :move_to_index
   before_action :set_user, only: [:show, :mypage, :follows, :followers]
 
   def show
+    @user = User.find(params[:id])
     @studyNow = @user.created_studies.without_deleted
     @study = @user.created_studies.only_deleted.order(created_at: "DESC").page(params[:page]).per(12)
 
