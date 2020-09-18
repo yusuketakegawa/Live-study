@@ -11,21 +11,21 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    resources :joins, only: [:new, :create, :destroy]
+    resources :joins, only: %i[new create destroy]
     resources :comments, only: :create
   end
-  
-  resources :users, only: [:show, :edit, :update] do
+
+  resources :users, only: %i[show edit update] do
     member do
       get 'mypage'
     end
-    resource :relationships, only: [:create, :destroy]
+    resource :relationships, only: %i[create destroy]
     get :follows, on: :member
     get :followers, on: :member
   end
 
   resources :messages, only: [:create]
-  resources :rooms, only: [:index, :create,:show]
+  resources :rooms, only: %i[index create show]
   resources :notifications, only: [:index]
 
   match "*path" => "application#error404", via: :all
