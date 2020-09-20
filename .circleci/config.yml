@@ -4,14 +4,14 @@ jobs:
     docker:
     - image: circleci/ruby:2.6.5-node-browsers
       environment:
-        - BUNDLER_VERSION: 2.0.2
+        - BUNDLER_VERSION: 2.1.4
         - RAILS_ENV: 'test'
     - image: circleci/mysql:5.7
       environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
         - MYSQL_ROOT_HOST: '127.0.0.1'
 
-    working_directory: ~/Live-study   #自身のアプリディレクトリ名を設定  
+    working_directory: ~/live_study  #自身のアプリディレクトリ名を設定  
 
 
     steps:
