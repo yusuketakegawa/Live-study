@@ -52,3 +52,4 @@ production:
   database: Live_study_production
   username: Live_study
   password: <%= ENV['LIVE_STUDY_DATABASE_PASSWORD'] %>
+あああああああああああああああああああああああああああああああああああああああ
