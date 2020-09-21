@@ -57,7 +57,13 @@ jobs:
             --format progress \
             $TEST_FILES
 
-  
+      # collect reports
+    - store_test_results:
+        path: /tmp/test-results
+    - store_artifacts:
+        path: /tmp/test-results
+        destination: test-results
+
     #push for ecr
   build_image:
     docker:
@@ -83,22 +89,14 @@ jobs:
         command: |
           docker push ${ECR_DOMAIN}:$CIRCLE_SHA1 
           docker push ${ECR_DOMAIN}:latest
-
-    # collect reports
-    - store_test_results:
-        path: /tmp/test-results
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
-
-# workflows:
-#   version: 2
-#   test:
-#     jobs:
-#       - build
-#       - build_image: 
-#         requires: 
-#           - build
-#         filters:
-#           branches:
-#             only: master
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
+      - build_image: 
+          requires: 
+            - build
+          filters:
+            branches:
+              only: master
