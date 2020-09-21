@@ -1,62 +1,122 @@
 version: 2
+  jobs:
+    build:
+      docker:
+        - image: circleci/ruby:2.6.3 
+      working_directory: ~/repo 
+      steps:
+        - checkout
+        - run: # circleci の ruby のコンテナの bundler のバージョンは古いので update する
+            name: bundle update
+            command: gem install bundler:2.0.2 
+        - restore_cache:
+            keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }} - v1-dependencies-
+- run:
+name: install dependencies command: |
+bundle install --jobs=4 --retry=3 --path vendor/bundle - save_cache:
+paths:
+- ./vendor/bundle
+key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5
-    working_directory: ~/live_study 
-    steps:
-      - checkout
-      - run: 
-          name: bundle update
-          command: gem install bundler:2.0.2 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }} 
-            - v1-dependencies-
-      - run:
-          name: install dependencies 
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle 
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
+    - image: circleci/ruby:2.6.5-node-browsers
+      environment:
+        - BUNDLER_VERSION: 2.1.4
+        - RAILS_ENV: 'test'
+    - image: circleci/mysql:5.7
+      environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+        - MYSQL_ROOT_HOST: '127.0.0.1'
+    working_directory: ~/live_study  #自身のアプリディレクトリ名を設定  
 
           
+    steps:
+    - checkout
+
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
+
+    - run:
+        name: install dependencies
+        command: |
+          gem install bundler -v 2.1.4
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+    - save_cache:
+        paths:
+        - ./vendor/bundle
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+    # Database setup
+    - run: mv ./config/database.yml.ci ./config/database.yml
+
+    # Database setup
+    - run:
+        name: Databasesetup
+        command: |
+           bundle exec rake db:create
+           bundle exec rake db:schema:load
+
+
+    # run tests!
+    - run:
+        name: Run rspec
+        command: |
+          mkdir /tmp/test-results
+          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+            circleci tests split --split-by=timings)"
+
+          bundle exec rspec \
+            --format progress \
+            --out /tmp/test-results/rspec.xml \
+            --format progress \
+            $TEST_FILES
+
+  
     #push for ecr
   build_image:
     docker:
       - image: docker:18.09.0
     steps:
-      - checkout
-      - setup_remote_docker 
-      - run:
-          name: install aws cli
-          command: |
-            apk add --no-cache --update py-pip
-            pip install awscli 
-      - run:
-          name: login ecr
-          command: |
-            $(aws ecr get-login --no-include-email --region ap-northeast-1)
-      - run:
-          name: build image
-          command: |
-            docker build -t ${ECR_DOMAIN}:$CIRCLE_SHA1 -t ${ECR_DOMAIN}:latest .
-      - run:
-          name: Push docker image 
-          command: |
-            docker push ${ECR_DOMAIN}:$CIRCLE_SHA1 
-            docker push ${ECR_DOMAIN}:latest
-workflows:
-  version: 2
-  test:
-    jobs:
-      - build
-      - build_image: 
-          requires: 
-            - build
-          filters:
-            branches:
-              only: master
+    - checkout
+    - setup_remote_docker 
+    - run:
+        name: install aws cli
+        command: |
+          apk add --no-cache --update py-pip
+          pip install awscli 
+    - run:
+        name: build image
+        command: |
+          $(aws ecr get-login --no-include-email --region ap-northeast-1)
+          docker build -t ${ECR_DOMAIN}/sample-image:$ CIRCLE_ SHA 1 -t ${ECR_DOMAIN}/sample-image:latest --build-arg RAILS_ MASTER_ KEY =${RAILS_MASTER_KEY} --build-arg RAILS_ENV=production .
+    - run:
+        name: Push docker image 
+        command: |
+          docker push ${ECR_DOMAIN}/sample-image:$CIRCLE_SHA1 
+          docker push ${ECR_DOMAIN}/sample-image:latest
+
+    # collect reports
+    - store_test_results:
+        path: /tmp/test-results
+    - store_artifacts:
+        path: /tmp/test-results
+        destination: test-results
+
+# workflows:
+#   version: 2
+#   test:
+#     jobs:
+#       - build
+#       - build_image: 
+#         requires: 
+#           - build
+#         filters:
+#           branches:
+#             only: master
