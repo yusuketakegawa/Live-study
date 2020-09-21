@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/live_study 
     steps:
       - checkout
-      - run: # circleci の ruby のコンテナの bundler のバージョンは古いので update する
+      - run: 
           name: bundle update
           command: gem install bundler:2.0.2 
       - restore_cache:
@@ -21,6 +21,7 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
     #push for ecr
   build_image:
     docker:
