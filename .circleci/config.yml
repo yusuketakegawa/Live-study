@@ -10,7 +10,6 @@ jobs:
       environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
         - MYSQL_ROOT_HOST: '127.0.0.1'
-    - image: docker:18.09.0
     working_directory: ~/live_study  #自身のアプリディレクトリ名を設定  
 
           
@@ -64,7 +63,7 @@ jobs:
     - run:
         name: install aws cli
         command: |
-          apk add --no-cache --update py-pip
+          apt-get --no-cache --update py-pip
           pip install awscli 
     - run:
         name: build image
