@@ -13,9 +13,6 @@ jobs:
 
     working_directory: ~/live_study  #自身のアプリディレクトリ名を設定  
 
-  build_image: 
-    docker:
-      - image: docker:18.09.0
 
     steps:
     - checkout
