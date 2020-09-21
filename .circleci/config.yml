@@ -58,9 +58,39 @@ jobs:
             --format progress \
             $TEST_FILES
 
+    #push for ecr
+    - setup_remote_docker 
+    - run:
+        name: install aws cli
+        command: |
+          apk add --no-cache --update py-pip
+          pip install awscli 
+    - run:
+        name: build image
+        command: |
+          $(aws ecr get-login --no-include-email --region ap-northeast-1)
+          docker build -t ${ECR_DOMAIN}/sample-image:$ CIRCLE_ SHA 1 -t ${ECR_DOMAIN}/sample-image:latest --build-arg RAILS_ MASTER_ KEY =${RAILS_MASTER_KEY} --build-arg RAILS_ENV=production .
+    - run:
+        name: Push docker image 
+        command: |
+          docker push ${ECR_DOMAIN}/sample-image:$CIRCLE_SHA1 
+          docker push ${ECR_DOMAIN}/sample-image:latest
+
     # collect reports
     - store_test_results:
         path: /tmp/test-results
     - store_artifacts:
         path: /tmp/test-results
         destination: test-results
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
+      - build_image: 
+        requires: 
+          - build
+        filters:
+          branches:
+            only: master
