@@ -59,11 +59,16 @@ jobs:
 
   
     #push for ecr
+  build_image:
+    docker:
+      - image: docker:18.09.0
+    steps:
+    - checkout
     - setup_remote_docker 
     - run:
         name: install aws cli
         command: |
-          apt-get --no-cache --update py-pip
+          apk add --no-cache --update py-pip
           pip install awscli 
     - run:
         name: build image
