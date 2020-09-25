@@ -1,3 +1,32 @@
 .top {
-  height: 2000px;
+  &__header {
+    font-weight: bold;
+    &__span {
+      color:#26a69a ;
+    }
+  }
+  .parallax-container {
+    height: 300px;
+  }
+  &__middle {
+    width: 70%;
+    height: 400px;
+    margin: 50px auto;
+    &__content {
+      height: 200px;
+      padding: 0 30px !important;
+      .content__height {
+        display: flex;
+        justify-content: center;
+        color:#26a69a ;
+      }
+      .content__bottom {
+        text-align: center;
+        &__title {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
