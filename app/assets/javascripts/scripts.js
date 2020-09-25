@@ -42,3 +42,7 @@
     $(".tabs").tabs();
   });
     
+  //パラレル
+  $(document).ready(function () {
+    $(".parallax").parallax();
+  });
