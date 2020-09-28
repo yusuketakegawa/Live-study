@@ -1,0 +1,32 @@
+version: '2'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - ~/git/Live-study:/var/www/Live-study/
+    tty: true
+    depends_on:
+      - db
+    extends:
+      file: ./mysql/password.yml
+      service: password
+
+  db:
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    extends:  
+      file: ./mysql/password.yml
+      service: password
+
+volumes:
+  db_data:
+  sockets:
