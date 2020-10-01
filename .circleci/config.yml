@@ -8,7 +8,6 @@ jobs:
           fingerprints:
             - "41:38:05:59:17:c5:db:84:ab:d1:fa:04:9c:8b:ab:e6" #上記メモったハッシュを指定
       - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/Live-study/deploy.sh"
-      - run: bundle install
 workflows:
   version: 2
   deploy:
