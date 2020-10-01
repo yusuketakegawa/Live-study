@@ -1,54 +1,19 @@
-version: 2.1
-orbs:
-  aws-ecr: circleci/aws-ecr@6.7.0
-  aws-ecs: circleci/aws-ecs@1.1.0
+version: 2
+jobs:
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "d2:92:36:8d:66:4b:5e:d7:f5:5f:8a:06:f3:b3:f3:d1" #上記メモったハッシュを指定
+      - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/Live-study && git pull"
+      - run: bundle install
 workflows:
-  # Nginxのデプロイ
-  nginx-deploy:
+  version: 2
+  deploy:
     jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}
-          .amazonaws.com"
-          region: AWS_DEFAULT_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/nginx/Dockerfile
-          repo: nginx
-          tag: "${CIRCLE_SHA1}"
+      - deploy:
           filters:
             branches:
               only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'Live-study' # ECSのタスク定義名
-          cluster-name: '${ECS_ARN}'  #ECSのクラスターのARN
-          service-name: 'live-study-now'  #サービス名
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
-  # Railsのデプロイ
-  rails-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}
-          .amazonaws.com"
-          region: AWS_DEFAULT_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/rails/Dockerfile
-          repo: rails
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'Live-study' # ECSのタスク定義名
-          cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
-          service-name: 'live-study-now' #サービス名
-          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
-
-  
-#AWS_ECR_ACCOUNT_URL => ${アカウントID}.dkr.ecr.${リージョン}.amazonaws.com
