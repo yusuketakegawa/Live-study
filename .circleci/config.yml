@@ -6,7 +6,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "d2:92:36:8d:66:4b:5e:d7:f5:5f:8a:06:f3:b3:f3:d1" #上記メモったハッシュを指定
+            - "63:85:66:32:7b:39:d0:58:cb:9b:f4:03:05:48:4f:81" #上記メモったハッシュを指定
       - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/Live-study/deploy.sh"
       - run: bundle install
 workflows:
