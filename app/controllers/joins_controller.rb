@@ -2,7 +2,7 @@ class JoinsController < ApplicationController
   def create
     @ready = Join.find_by(user_id: current_user.id, deleted_at: nil)
     unless @ready.nil?
-      redirect_to root_path, notice: "一度に複数の部屋には入れません"
+      redirect_to studies_path, notice: "一度に複数の部屋には入れません"
       return
     end
     study = Study.find(params[:study_id])
