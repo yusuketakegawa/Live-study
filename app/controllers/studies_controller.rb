@@ -20,7 +20,7 @@ class StudiesController < ApplicationController
     # 論理削除されている部屋以外にテーブルにレコードが存在していた場合新しい部屋は作れない
     @already = Study.find_by(owner_id: current_user.id, deleted_at: nil)
     if !@already.nil?
-      redirect_to root_path, notice: "新しい部屋を作るには現在の部屋を終了/削除してください"
+      redirect_to studies_path, notice: "新しい部屋を作るには現在の部屋を終了/削除してください"
     else
       @study = current_user.created_studies.build
     end
@@ -33,7 +33,7 @@ class StudiesController < ApplicationController
 
     if @study.save
       @study.create_notification_study!(current_user, @study.id)
-      redirect_to root_path, notice: "部屋を作成しました"
+      redirect_to studies_path, notice: "部屋を作成しました"
     else
       render :new
     end
@@ -52,12 +52,12 @@ class StudiesController < ApplicationController
 
   def destroy
     @study.really_destroy!
-    redirect_to root_path, notice: "部屋を削除しました"
+    redirect_to studies_path, notice: "部屋を削除しました"
   end
 
   def finish
     @study.destroy!
-    redirect_to root_path, notice: "部屋を終了しました"
+    redirect_to studies_path, notice: "部屋を終了しました"
   end
 
   private
@@ -67,7 +67,7 @@ class StudiesController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path, notice: "アカウント登録もしくはログインしてください" unless user_signed_in?
+    redirect_to studies_path, notice: "アカウント登録もしくはログインしてください" unless user_signed_in?
   end
 
   def set_study
