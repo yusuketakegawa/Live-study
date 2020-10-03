@@ -8,6 +8,23 @@ jobs:
           fingerprints:
             - "41:38:05:59:17:c5:db:84:ab:d1:fa:04:9c:8b:ab:e6" #上記メモったハッシュを指定
       - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/Live-study/deploy.sh"
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+      - run:
+        name: Run rspec
+        command: |
+          mkdir /tmp/test-results
+          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+            circleci tests split --split-by=timings)"
+
+          bundle exec rspec \
+            --format progress \
+            --format RspecJunitFormatter \
+            --out /tmp/test-results/rspec.xml \
+            --format progress \
+            $TEST_FILES
+
 workflows:
   version: 2
   deploy:
