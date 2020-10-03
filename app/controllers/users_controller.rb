@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def check_guest
-    redirect_to root_path, notice: 'ゲストユーザーの編集・削除はできません。' if params[:user][:email].downcase == 'guest@example.com'
+    redirect_to studies_path, notice: 'ゲストユーザーの編集・削除はできません。' if params[:user][:email].downcase == 'guest@example.com'
   end
 
   def study_room
