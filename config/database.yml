@@ -20,8 +20,8 @@ default: &default
 development:
   <<: *default
   database: Live_study_development
-  password: password #編集
-  host: db #編集
+  # password: password #編集
+  # host: db #編集
 
 
 # Warning: The database defined as "test" will be erased and
