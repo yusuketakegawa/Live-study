@@ -12,7 +12,7 @@ class JoinsController < ApplicationController
 
     if @join.save
       redirect_to study, notice: "参加しました"
-      return
+      nil
     end
   end
 
