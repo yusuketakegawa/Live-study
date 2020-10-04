@@ -8,7 +8,7 @@ Rails.application.configure do
   config.hosts.clear # 追加
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.action_controller.forgery_protection_origin_check = false
   # Show full error reports.
   config.consider_all_requests_local = true
 
