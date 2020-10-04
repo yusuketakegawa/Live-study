@@ -1,1 +1,45 @@
-<%= render partial: 'index', locals: {studies: @search_studies}%>
+<div class ="container">
+  <div class ="row ">
+    <div class ="index__top col s12  ">
+      <h6 class ="blockquote ">
+        <blockquote>
+          勉強部屋を検索しよう
+        </blockquote>
+      </h6>
+      <%= search_form_for @search, url: search_studies_path do |f|%>
+        <div class="input-field col s12 ">
+          <%= f.select( :sorts, {'並び替え': 'id desc', '終了時間が早い順':'end_at asc', '終了時間が遅い順': 'end_at desc', '参加者順が多い順': 'joins_count desc'}, { selected: params[:q]}, { onchange: 'this.form.submit()'})  %>
+        </div>
+        <div class="input-field col s12 ">
+          <%= f.collection_select :tool_id_eq, Tool.all, :id, :name, {include_blank: "選択してください"} %>
+          <label>使用ツール</label>
+        </div>
+        <div class="input-field col s12 ">
+          <%= f.collection_select :category_id_eq, Category.all, :id, :name, {include_blank: "選択してください"} %>
+          <label>タイプ</label>
+        </div>
+        <%= button_tag '<i class="material-icons">search</i>検索'.html_safe, type: "submit", class: "btn btn-default btn-s-md join__room__btn" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="jscroll">
+ <div class ="row">
+    <div class ="index__main">
+      <h6 class ="blockquote ">
+        <blockquote>
+          現在開催中の部屋一覧
+        </blockquote>
+      </h6>
+     <%= render partial: "study__box", locals: { studies: @search_studies} %>
+    </div>
+  </div>
+<%= paginate @search_studies %>
+  </div>
+</div>
+<footer class="page-footer deep-purple accent-2">
+  <div class="footer-copyright">
+    <div class="container">
+      © 2020 Copyright Text
+    </div>
+  </div>
+</footer>
