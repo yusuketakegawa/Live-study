@@ -3,7 +3,7 @@ class StudiesController < ApplicationController
   before_action :set_study, only: %i[edit update destroy finish]
 
   def index
-    @studies = Study.without_deleted.recent
+    @studies = Study.without_deleted.order(created_at: "DESC").page(params[:page]).per(12)
     @search = Study.ransack(params[:q])
     @search_studies = @search.result(distinct: true).recent
   end
@@ -41,7 +41,7 @@ class StudiesController < ApplicationController
 
   def search
     @search = Study.ransack(params[:q])
-    @search_studies = @search.result(distinct: true).without_deleted.recent
+    @search_studies = @search.result(distinct: true).without_deleted.order(created_at: "DESC").page(params[:page]).per(12)
   end
 
   def edit; end
