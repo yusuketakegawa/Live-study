@@ -31,6 +31,14 @@ test:
   <<: *default
   database: Live_study_test
 
+
+production:
+  <<: *default
+  database: Live_study_staging
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
