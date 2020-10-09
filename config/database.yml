@@ -32,7 +32,7 @@ test:
   database: Live_study_test
 
 
-production:
+production: 
   <<: *default
   database: Live_study_staging
   username: root
