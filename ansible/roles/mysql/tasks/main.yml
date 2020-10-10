@@ -11,9 +11,9 @@
     name: MariaDB-server
     state: present
 
-  - name: MariaDb shared
-      yum:
-        name: MariaDB-shared 
+- name: MariaDb shared
+  yum:
+    name: MariaDB-shared 
 # 起動および自動起動設定
 - name: Start MariaDB service
   systemd:

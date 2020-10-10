@@ -11,6 +11,11 @@
 - name: copy nginx conf
   copy:
     src: nginx.conf 
+    dest: /etc/nginx/
+
+- name: copy stg.live-study.work.conf
+  copy:
+    src: stg.live-study.work.conf
     dest: /etc/nginx/conf.d/
 
 - command: chkconfig nginx on
