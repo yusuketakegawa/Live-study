@@ -1,0 +1,11 @@
+- hosts: all
+  roles:
+    - common
+
+- hosts: stg-web
+  roles:
+    - nginx
+    - mysql
+    - ruby
+    - nodejs
+ 

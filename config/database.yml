@@ -31,7 +31,6 @@ test:
   <<: *default
   database: Live_study_test
 
-
 staging: 
   <<: *default
   database: Live_study_staging

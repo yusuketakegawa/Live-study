@@ -1,0 +1,27 @@
+- name: create user 
+  user:
+    name: "{{ item.name }}"
+    createhome: yes
+    password: "{{ item.password | password_hash('sha512') }}"
+    shell: "{{ item.shell }}"
+    groups: nobody
+    state: "{{ item.state }}"
+    remove: "{{ item.remove }}"
+  with_items:
+  - { shell: '/bin/zsh', state: 'present', remove: 'no', name: 'tatsuya', password: 'tatuya1336' }
+
+- name: add sudoers 
+  lineinfile: 
+    path: /etc/sudoers
+    state: present
+    regexp: "{{ item.match }}"
+    line: "{{ item.line }}"
+  with_items:
+  - { match: 'tatsuya', line: 'tatsuya ALL=(ALL) NOPASSWD: ALL' }
+
+- name: authorized_key for user tatsuya
+  authorized_key:
+    user: tatsuya
+    key: "ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDfKTggklmY9An5V3Humjl7K3/wakVufWh73TNDb0axGIYYMRSgpMeWmqbOpvh2QP1KmNl+BUhGKfmNaz3b0693QQeuMvyoB3C0zKAeuNeN4cwceZlMdXNZ7WeOuFLd0GoPKVN/Pg+fE/rqCxDqAbbnxu/IdFNCh1ITZbkdw9cfMmgFEPI7IgkAoFFY05QlyWoKptj14wlGLTBn0cumCrNS01HYfaUe2RyJEIRFL4yX9KE96Nu2MVDqk48BZdkZba9rleNacWJ7ExxfUElJZ9CJV4zPnvZ3a+b8giq358vB9MLD81UQnwvKINg9kxht6EUxsiNwqg3P5a0s7j8h9KWwLvG0+/BQncY9V1cbSsJODvhQuCzdbzF+LKL8jkoWwZ5KBn5ly9+Sz7Kd0CMGV0fWyDrJRb2Pqh0CrrPxdV7dP3PR17b/0Q0u5blOm5HzPhdIKG3BA6QgBxYSzz8fFBcv5aOY72j1UbQrw/0JbuMtAdPiHNe5v9hFVei3LAxW1zM= hiranotatsuya@hiranotuyanoAir
+"
+

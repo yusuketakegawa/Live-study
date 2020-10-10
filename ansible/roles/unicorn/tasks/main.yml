@@ -1,0 +1,13 @@
+- name: copy unicorn init
+  copy:
+    src: "roles/unicorn/files/{{ item.src }}"
+    dest: "/etc/init.d/"
+    backup: no
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { src: unicorn }
+
+- name: start unicorn 
+  service: name=unicorn enabled=yes state=started

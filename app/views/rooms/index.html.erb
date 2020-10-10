@@ -8,9 +8,7 @@
     <%= link_to room_path(e.room.id) do %>
      <ul class="collection message__index">
       <li class="collection-item collection-message">
-          <p class="last__date">
-                <%= Message.find_by(id: e.room.message_ids.last).created_at.strftime("%m/%d %H:%M") %>
-              </p> 
+         
         <%= image_tag e.user.image.url, class: "pic "%>
         <div class="message__avatar">
           <p class="message__avatar__name">
