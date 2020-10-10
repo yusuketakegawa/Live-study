@@ -1,0 +1,15 @@
+- name: install bundler
+  shell: bash -lc "gem install bundler"
+  ignore_errors: yes
+ 
+- name: install nokogiri
+  shell: bash -lc "gem install nokogiri -- --use-system-libraries"
+  ignore_errors: yes
+ 
+- name: install rails
+  shell: bash -lc "gem install rails --version="4.2.0""
+  ignore_errors: yes
+
+- name: rehash
+  shell: bash -lc "/usr/local/rbenv/bin/rbenv rehash"
+  ignore_errors: yes

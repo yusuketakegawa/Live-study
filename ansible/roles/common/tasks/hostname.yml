@@ -1,0 +1,6 @@
+- name: change hostname
+  hostname: name={{ inventory_hostname }}
+
+- name: set timezone to Asia/Tokyo
+  timezone:
+    name: Asia/Tokyo

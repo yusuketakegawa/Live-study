@@ -1,0 +1,12 @@
+- hosts: all
+  roles:
+    - common
+
+- hosts: rails
+  roles:
+    - nginx
+    - mysql
+    - ruby
+    - nodejs
+    - live-study-stg
+ 

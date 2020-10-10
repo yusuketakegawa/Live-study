@@ -1,0 +1,8 @@
+server_hostname: "{{ inventrory_hostname }}"
+
+#rbenv
+RVENV_GIT: "git://github.com/sstephenson/rbenv.git"
+
+#ruby-build
+RUBY_BUILD_GIT: "git://github.com/sstephenson/ruby-build.git"
+

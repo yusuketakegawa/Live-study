@@ -1,0 +1,17 @@
+- name: Install openssl
+  yum: name=openssl-devel
+
+- name: Enable to install NGINX.
+  shell: "amazon-linux-extras enable nginx1"
+  become: yes
+
+- name: Install NGINX.
+  yum: name=nginx
+
+- name: copy nginx conf
+  copy:
+    src: nginx.conf 
+    dest: /etc/nginx/conf.d/
+
+- command: chkconfig nginx on
+- command: service nginx restart

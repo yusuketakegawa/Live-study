@@ -1,0 +1,18 @@
+
+
+- name: make dir 
+  file:
+    path: /var/www/Live-study
+    state: directory
+
+- name: git clone live-study 
+  git:
+    repo: https://github.com/tatuya4451/Live-study.git
+    dest: /var/www/Live-study
+
+- name: gem  install  bundler#gem install bundler
+  command: bash -lc "gem install bundler"
+
+- name: install rails
+  shell: bash -lc "gem install rails"
+  ignore_errors: yes
