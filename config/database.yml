@@ -31,8 +31,7 @@ test:
   <<: *default
   database: Live_study_test
 
-
-staging:
+staging: 
   <<: *default
   database: Live_study_staging
   username: root
