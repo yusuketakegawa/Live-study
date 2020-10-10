@@ -1,23 +1,25 @@
-- name: install packages
-  yum: name={{ item }} state=installed
-  with_items:
-    - git
-    - gcc-c++ #C や C++ のコンパイラー
-    - patch #テキストファイルに差分を適用するコマンド
-    - libyaml-devel #c言語でyamlファイルを扱うライブラリ
-    - libffi-devel #プログラム実行時に関数を指定し呼び出すことができる
-    - libicu-devel #堅牢で多機能な Unicode およびロケールへの対応を提供
-    - zlib-devel #データの圧縮などを行う
-    - readline-devel #移動キー
-    - libxml2-devel #xmlファイルを解析
-    - libxslt-devel 
-    - ImageMagick #画像処理ライブラリ
-    - ImageMagick-devel
-    - openssl-devel
-    - libcurl #curlのベース
-    - libcurl-devel
-    - curl #サーバから、もしくはサーバへデータ転送を行うコマンド
-    - wget
+- yum:
+    name: "{{ packages }}"
+    state: installed
+  vars:
+    packages:
+      - git
+      - gcc-c++ #C や C++ のコンパイラー
+      - patch #テキストファイルに差分を適用するコマンド
+      - libyaml-devel #c言語でyamlファイルを扱うライブラリ
+      - libffi-devel #プログラム実行時に関数を指定し呼び出すことができる
+      - libicu-devel #堅牢で多機能な Unicode およびロケールへの対応を提供
+      - zlib-devel #データの圧縮などを行う
+      - readline-devel #移動キー
+      - libxml2-devel #xmlファイルを解析
+      - libxslt-devel 
+      - ImageMagick #画像処理ライブラリ
+      - ImageMagick-devel
+      - openssl-devel
+      - libcurl #curlのベース
+      - libcurl-devel
+      - curl #サーバから、もしくはサーバへデータ転送を行うコマンド
+      - wget
 
     
 

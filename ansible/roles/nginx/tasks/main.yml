@@ -8,15 +8,19 @@
 - name: Install NGINX.
   yum: name=nginx
 
+- name: nginx start
+  systemd:
+    state: started
+    name: nginx
+    enabled: yes
+    
 - name: copy nginx conf
   copy:
-    src: nginx.conf 
+    src: roles/nginx/files/nginx.conf 
     dest: /etc/nginx/
 
 - name: copy stg.live-study.work.conf
   copy:
-    src: stg.live-study.work.conf
+    src: roles/nginx/files/stg.live-study.work.conf
     dest: /etc/nginx/conf.d/
-
-- command: chkconfig nginx on
-- command: service nginx restart
+  notify: restart nginx
