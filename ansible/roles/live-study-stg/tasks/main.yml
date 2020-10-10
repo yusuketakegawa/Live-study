@@ -1,6 +1,0 @@
-- name: gem  install  bundler
-  command: bash -lc "gem install bundler"
-
-# - name: install rails
-#   shell: bash -lc "gem install rails"
-#   ignore_errors: yes
