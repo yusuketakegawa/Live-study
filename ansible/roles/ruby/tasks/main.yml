@@ -31,3 +31,10 @@
 - name: rbenv global 2.6.5
   shell: bash -lc "/usr/local/rbenv/bin/rbenv global 2.6.5"
   ignore_errors: yes
+  
+- name: gem  install  bundler#gem install bundler
+  command: bash -lc "gem install bundler"
+
+- name: install rails
+  shell: bash -lc "gem install rails"
+  ignore_errors: yes
