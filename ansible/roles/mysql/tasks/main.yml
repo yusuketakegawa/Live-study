@@ -11,6 +11,11 @@
     name: MariaDB-server
     state: present
 
+- name: Install mysql devel
+  yum:
+    name: mysql-devel
+    state: present
+
 - name: MariaDb shared
   yum:
     name: MariaDB-shared 
