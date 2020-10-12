@@ -20,10 +20,10 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - deploy-stage
-          # filters:
-          #   branches:
-          #     only: staging
+      - deploy-stage:
+          filters:
+            branches:
+              only: staging
       - deploy-prod:
           filters:
             branches:
