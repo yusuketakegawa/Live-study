@@ -79,7 +79,7 @@
     sudo yum install certbot-nginx
     ```
     ```
-  sudo certbot --nginx
+    sudo certbot --nginx
     ```
 
 
