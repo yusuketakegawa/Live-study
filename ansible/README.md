@@ -1,7 +1,6 @@
 ## Live-studyのstaging環境をAnsibleで構築する
 
 
-- ansible/roles/nginx/files/stg.live-study.workの#443をコメントアウトする。
 - playbookのシンタックスチェック→実行
 
 
@@ -37,7 +36,10 @@
     ```
      mysql -u root -p
     ```
-- secret_key_baseとデータベースのパスワードを環境変数に格納する    
+- secret_key_baseとデータベースのパスワードを環境変数に格納する(Live-study配下で実行)    
+    ```
+    bundleisntall 
+    ```
     ```
    rake secret 
     ```
@@ -50,9 +52,6 @@
     ```
 - railsアプリのセットアップ(Live-study配下で実行)    
     ```
-    bundleisntall 
-    ```
-    ```
   rails db:create RAILS_ENV=staging
     ```
     ```
@@ -62,10 +61,9 @@
    rails assets:precompile RAILS_ENV=staging
     ```
     ```
-  RAILS_SERVE_STATIC_FILES=1 unicorn_rails -c config/unicorn.rb -E staging -D
+  RAILS_SERVE_STATIC_FILES=1 bundle exec unicorn_rails -c config/unicorn.rb -E staging -D
     ```
 - letsencryptでssl証明書を取得してhttpsで接続する  
-- stg.live-study.workの#443をコメントアウトする。
     ```
    sudo wget -r --no-parent -A 'epel-release-*.rpm' http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/
     ```
@@ -79,7 +77,17 @@
     sudo yum install certbot-nginx
     ```
     ```
-  sudo certbot --nginx
+    sudo certbot --nginx
+    ```
+- デバッグ    
+    ```
+    cat /var/www/Liveーstudy/log/unicorn.stderr.log
+    ```
+    ```
+    tail -f log/production.log
+    ```
+    ```
+    cat /var/log/nginx/error.log
     ```
 
 
