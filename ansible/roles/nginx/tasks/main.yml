@@ -16,11 +16,15 @@
     
 - name: copy nginx conf
   copy:
-    src: roles/nginx/files/nginx.conf 
+    src: roles/nginx/files/{{ item.src }}
     dest: /etc/nginx/
+  with_items:  
+    - { src: "{{ inventory_hostname }}/nginx.conf" }
 
 - name: copy stg.live-study.work.conf
   copy:
-    src: roles/nginx/files/stg.live-study.work.conf
+    src: roles/nginx/files/{{ item.src }}
     dest: /etc/nginx/conf.d/
+  with_items:  
+    - { src: "{{ inventory_hostname }}/conf.d/", dest: . }    
   notify: restart nginx
