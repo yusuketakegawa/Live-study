@@ -1,0 +1,7 @@
+- name: auto update cert keys
+  cron:
+    name: letsencrypt
+    cron_file: letsencrypt #/etc/cron.d/にletsencryptを作成
+    user: root
+    special_time: daily
+    job: sh -c 'letsencrypt renew && /usr/sbin/service nginx reload' >> /var/log/letsencrypt/cron.log

@@ -4,8 +4,8 @@
 
 - hosts: stg-web
   roles:
-    - nginx
+    # - nginx
     - mysql
     - nodejs
     - ruby
- 
+    - cron
