@@ -24,6 +24,12 @@ https://live-study.work/
 * ユーザ機能(devise)
 * ページネーション(kaminari)
 
+## 工夫した点
+* 利用者が使いやすいように直感的に操作できるマテリアルデザインを採用。
+* 部屋に参加している時は他の部屋には入れないなどの利用者目線で細かい機能を実装。
+* インフラ面では構成管理にAnsibleを採用してインフラをコード化。
+* Circleciでのstagingブランチにマージ→masterにマージしたらデプロイされるgitフローを作成。
+* 極力ローコストで運用するためにRDS,ACM,ALBなどのマネージドサービスは不使用。
 ## 環境・使用技術
 ### フロントエンド
 * materialize
@@ -37,20 +43,25 @@ https://live-study.work/
 * Nginx
 * supervisor
 * MySQL5.7
+### ステージング環境
+* Ansibleで本番環境と同様の構成管理
+* URL https://stg.live-study.work/
 ### 本番環境
 * AWS (EC2,Route53)
 * Let’s Encrypt(SSl証明書)
 * MySQL5.7
 * Nginx、 Unicorn
 * CircleCIを用いて自動デプロイ
-### インフラ構成図
-<img width="734" alt="b88fd4d93530197b79b628b56136eab9" src="https://user-images.githubusercontent.com/66053927/95009290-cf9e9800-065b-11eb-891c-7521beba98c5.png">
-
+* Ansibleで構成管理
 ### テスト
 * Rspec 
 ### その他使用技術
 * 非同期通信 
 * Rubocop
+### インフラ構成図
+<img width="894" alt="ca7b6103bd9d99cadbb4f9d35c7a8c4b" src="https://user-images.githubusercontent.com/66053927/95849966-0fb3f800-0d8b-11eb-81c7-0aae8f4c6c58.png">
+
+
 ## ER図
 <img width="907" alt="0cd59cb8c5cc8b7779ca85f3506a38fb" src="https://user-images.githubusercontent.com/66053927/95009299-ea710c80-065b-11eb-9e6d-56d4c49a8748.png">
 
