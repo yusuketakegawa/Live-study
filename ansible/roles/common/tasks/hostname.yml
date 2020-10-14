@@ -5,9 +5,4 @@
   timezone:
     name: Asia/Tokyo
 
-- name: github authorized_key for user ec2
-  authorized_key:
-    user: ec2-user
-    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrBqe+BOGvRUhymHvx+RwdbDdWFKjTIBSpvcATeqDPmlWRcLH/cs6QDymMNvkUEGNc98I8RFxaWQPByybOm5Z3xT5XXVGRjlYUW4eF6t9pYaSZyPvt076UNbU9C1UM3PhHVncGabyDfi8UHJsUjM8IwFNqYyldfG8ag3wAaZR0u5o7PEMQennbpqZqiV3NdsWCSxTyia+zirqwILEA3zdmnWXUbicMzYa8Mr80S4vmRJKvj+uks/qcOujDtlE2gh95V1hmw7+zHjcLUpzhM+Wgevv0rVn84HzQsgfLep3nECMXFrpiAb1WTI3d4rfK8b6x0Jjd8wjesG1s3JcLTOxCZSoA6+U68+FpxEbQIn+K4bNJ8t03I+6rVyv9FeZZD8whYx75rZjADu3Tzw3UOL3pLDBAOErmSW5lsoqTNTC5+H6n9F4l28UF6aijFYRLbLaMJvlHgIpxGQqY19xHsh7CUuxeoxxLGcPV/aLy32ozbVrMvmB6MLKfA1f8MQPIoQk= hiranotatsuya@hiranotuyanoAir
-"
 
