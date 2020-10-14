@@ -43,6 +43,9 @@ https://live-study.work/
 * Nginx
 * supervisor
 * MySQL5.7
+### 開発環境インフラ構成図
+<img width="921" alt="2b605f1662ec1de1f547ed68cdcb5bc8" src="https://user-images.githubusercontent.com/66053927/95952997-22363c00-0e34-11eb-8a68-9e1400f086f5.png">
+
 ### ステージング環境
 * Ansibleで本番環境と同様の構成管理
 * URL https://stg.live-study.work/
@@ -59,8 +62,7 @@ https://live-study.work/
 * 非同期通信 
 * Rubocop
 ### インフラ構成図
-<img width="894" alt="ca7b6103bd9d99cadbb4f9d35c7a8c4b" src="https://user-images.githubusercontent.com/66053927/95849966-0fb3f800-0d8b-11eb-81c7-0aae8f4c6c58.png">
-
+<img width="922" alt="651a5a5dc85311f82737c3759233c5f3" src="https://user-images.githubusercontent.com/66053927/95953028-30845800-0e34-11eb-80c9-8b90ad591f58.png">
 
 ## ER図
 <img width="907" alt="0cd59cb8c5cc8b7779ca85f3506a38fb" src="https://user-images.githubusercontent.com/66053927/95009299-ea710c80-065b-11eb-9e6d-56d4c49a8748.png">
