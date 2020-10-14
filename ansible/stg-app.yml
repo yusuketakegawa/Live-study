@@ -8,4 +8,4 @@
     - mysql
     - nodejs
     - ruby
- 
+    - cron
