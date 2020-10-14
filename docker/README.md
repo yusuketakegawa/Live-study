@@ -26,4 +26,5 @@
 
 
 ## インフラ構成図
-<img width="924" alt="83effc3b659bfecf253c14955f08af1c" src="https://user-images.githubusercontent.com/66053927/95708348-f9c50b00-0c96-11eb-84b2-b2926402755f.png">
+<img width="866" alt="3ef0781d7671f1cc93634cce7f1d36ed" src="https://user-images.githubusercontent.com/66053927/95939766-cb226e00-0e17-11eb-800d-195a44d847de.png">
+
