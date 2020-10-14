@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
     end
 
     # current_userと相手側のユーザーが格納されているレコードを探す処理
-    @another_entries = Entry.where(room_id: myroom).where('user_id != ?', @user.id)
+    @another_entries = Entry.where(room_id: myroom).where.not(user_id: @user.id)
     @new_entries = @another_entries.order(created_at: :desc)
   end
 
