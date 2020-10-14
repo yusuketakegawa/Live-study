@@ -1,0 +1,8 @@
+- hosts: prd-live-app01
+  roles:
+    - common
+    - nginx
+    - mysql
+    - nodejs
+    - ruby
+    - cron
