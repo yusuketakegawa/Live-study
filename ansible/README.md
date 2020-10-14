@@ -10,11 +10,11 @@
 - playbookのシンタックスチェック→実行
 
     ```
-    ansible-playbook -i hosts stg-app.yml -C 
+    ansible-playbook -i host/stg.hosts stg.yml -C 
     ```
 
     ```
-    ansible-playbook -i hosts stg-app.yml 
+    ansible-playbook -i host/stg.hosts stg.yml 
     ```
 - ec2にログイン→git cloneして/var/www/配下にアプリを設置
 
@@ -106,11 +106,11 @@
 
 
     ```
-    ansible-playbook -i hosts stg-app.yml -C 
+    ansible-playbook -i host/prd.hosts prd.yml -C
     ```
 
     ```
-    ansible-playbook -i hosts stg-app.yml 
+    ansible-playbook -i host/prd.hosts prd.yml 
     ```
 - ec2にログイン→git cloneして/var/www/配下にアプリを設置
     ```
