@@ -38,6 +38,11 @@ https://live-study.work/
 ### バックエンド
 * Ruby 2.6.5
 * Rails 6.0.3
+### テスト
+* Rspec 
+### その他使用技術
+* 非同期通信 
+* Rubocop
 ### 開発環境 
 * Docker/Docker-compose
 * Nginx
@@ -56,11 +61,6 @@ https://live-study.work/
 * Nginx、 Unicorn
 * CircleCIを用いて自動デプロイ
 * Ansibleで構成管理
-### テスト
-* Rspec 
-### その他使用技術
-* 非同期通信 
-* Rubocop
 ### インフラ構成図
 <img width="922" alt="651a5a5dc85311f82737c3759233c5f3" src="https://user-images.githubusercontent.com/66053927/95953028-30845800-0e34-11eb-80c9-8b90ad591f58.png">
 
