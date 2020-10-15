@@ -1,0 +1,5 @@
+[app]
+stg-live-app01
+#group
+[stg:children]
+app

@@ -1,9 +1,6 @@
-- hosts: all
+- hosts: stg-live-app01
   roles:
     - common
-
-- hosts: stg-web
-  roles:
     - nginx
     - mysql
     - nodejs
