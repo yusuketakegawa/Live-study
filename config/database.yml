@@ -36,6 +36,7 @@ staging:
   database: Live_study_staging
   username: <%= ENV.fetch("DATABASE_USER")%>
   password: <%= ENV.fetch("DATABASE_PASSWORD")%>
+  host: <%= ENV.fetch("DATABASE_HOST")%> 
   socket: /var/lib/mysql/mysql.sock
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -62,4 +63,5 @@ production:
   database: Live_study_production
   username: <%= ENV.fetch("DATABASE_USER")%>
   password: <%= ENV.fetch("DATABASE_PASSWORD")%>
+  host: <%= ENV.fetch("DATABASE_HOST")%> 
   socket: /var/lib/mysql/mysql.sock
