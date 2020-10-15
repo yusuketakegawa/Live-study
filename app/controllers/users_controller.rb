@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :move_to_index
   before_action :set_user, only: %i[show mypage follows followers]
-  before_action :check_guest, only: :update
+  # before_action :check_guest, only: :update
   before_action :study_room, only: %i[show mypage]
   def show
     # roomがcreateされた時にcurrent_userと相手側のユーザーをentriesテーブルに記録する必要があるのでwhereメソッドでユーザーを探す処理。
