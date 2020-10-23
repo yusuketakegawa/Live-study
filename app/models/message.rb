@@ -13,7 +13,14 @@ class Message < ApplicationRecord
       visited_id: @temp_ids.user_id,
       action: 'message'
     )
-
+    @slack_url = User.find_by(id: @temp_ids.user_id, slack_url: nil)
+    if @slack_url.present?
+    else
+      notifier = Slack::Notifier.new(
+        @temp_ids.user.slack_url
+      )
+      notifier.ping '【Live-study】新しいメッセージが届いています https://live-study.work/notifications'
+    end
     notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
