@@ -40,6 +40,17 @@
                 <%= f.label :email %>
               </div>
             </li>
+            <li class="collection-item avatar new__content__li">
+              <i class="material-icons circle teal lighten-1">link</i>
+              <p class="test">Slack通知(Slack Webhook URL)</p>
+              <div class="input-field col s12 m6">
+                <%= f.text_field :slack_url %>
+                <%= f.label :slack_url %>
+              </div>
+              <p class="slack_url">
+                <a href="https://slack.com/intl/ja-jp/help/articles/115005265063-Slack-%E3%81%A7%E3%81%AE-Incoming-Webhook-%E3%81%AE%E5%88%A9%E7%94%A8">Slack</a>でLIve-studyの通知を受け取ることができます
+              </p>
+            </li>
               <div class="input-field col s12">
                 <%= f.submit "更新", class: "btn edit__btn"%>
               </div>
