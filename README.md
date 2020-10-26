@@ -23,6 +23,7 @@ https://live-study.work/
 * 勉強部屋の開催、編集、削除、参加、終了
 * ユーザ機能(devise)
 * ページネーション(kaminari)
+* Slack通知連携機能(Slack Webhook URL)
 
 ## 工夫した点
 * 利用者が使いやすいように直感的に操作できるマテリアルデザインを採用。
